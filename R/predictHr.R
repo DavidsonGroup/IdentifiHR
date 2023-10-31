@@ -2,7 +2,7 @@
 #'
 #' The "predictHr" function utilises IdentifiHR, a pre-trained penalised logistic regression classifier, to predict homologous recombination status. While IdentifiHR was trained to classify high-grade serous ovarian carcinomas, it can be applied to other cancer types, though the accuracy of classification will be reduced.
 #'
-#' @param y A matrix of gene expression counts, with samples presented in rows and genes presented in columns.
+#' @param y A numeric matrix of gene expression counts, with samples presented in rows and genes presented in columns.
 #' @param scaled Logical. Has z-score scaling been performed? Default is TRUE, being that the counts matrix has been scaled. If FALSE, z-score scaling of each gene will be performed.
 #' @param IdentifiHR The trained HR status predictor
 #' @param
@@ -11,8 +11,14 @@
 #'
 #' @examples
 #' ## NOT RUN
-#' # data()
-#' # predictHr()
+#' # Load packages
+#' # library(dplyr)
+#' # library(tidyverse)
+#' # library(stats)
+#' # Load data
+#' # data(tcgaOvScaled)
+#' # Predict HR status with IdentifiHR
+#' # predictHr(tcgaOvScaled, scaled = TRUE)
 #'
 
 predictHr <- function(y,
@@ -23,12 +29,26 @@ predictHr <- function(y,
     print("Predicting HR status using scaled gene expression counts")
 
     # Make predictions using the trained model
-    predictionHr <- predict(lmHrSig,
-                            newx = y,
-                            s = "lambda.min",
-                            type = c("class"))
+    predictionHr <- stats::predict(lmHrSig,
+                                   newx = y,
+                                   s = "lambda.min",
+                                   type = "class") %>%
+      as.data.frame() %>%
+      rownames_to_column(var = "Sample") %>%
+      dplyr::rename(., hrPrediction = lambda.min)
 
-    return(predictionHr)
+    predictedProb <- stats::predict(lmHrSig,
+                                    newx = y,
+                                    s = "lambda.min",
+                                    type = "response") %>%
+      as.data.frame() %>%
+      rownames_to_column(var = "Sample") %>%
+      dplyr::rename(., predictionProb = lambda.min)
+
+    predictionHrDf <- left_join(predictionHr, predictedProb, by = "Sample")
+
+
+    return(predictionHrDf)
   }
 
   if(scaled == "FALSE") {
@@ -41,14 +61,29 @@ predictHr <- function(y,
                           scale = TRUE)
 
     # Make predictions using the trained model
-    predictionHr <- predict(lmHrSig,
-                            newx = scaledCounts,
-                            s = "lambda.min",
-                            type = c("class"))
+    predictionHr <- stats::predict(lmHrSig,
+                                   newx = y,
+                                   s = "lambda.min",
+                                   type = "class") %>%
+      as.data.frame() %>%
+      rownames_to_column(var = "Sample") %>%
+      dplyr::rename(., hrPrediction = lambda.min)
 
-    return(predictionHr)
+    predictedProb <- stats::predict(lmHrSig,
+                                    newx = y,
+                                    s = "lambda.min",
+                                    type = "response") %>%
+      as.data.frame() %>%
+      rownames_to_column(var = "Sample") %>%
+      dplyr::rename(., predictionProb = lambda.min)
+
+    predictionHrDf <- left_join(predictionHr, predictedProb, by = "Sample")
+
+
+    return(predictionHrDf)
   }
 
 }
-predictHr(testDataDe, scaled = TRUE)
+
+test <- predictHr(testDataDe, scaled = TRUE)
 
