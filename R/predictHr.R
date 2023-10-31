@@ -4,9 +4,8 @@
 #'
 #' @param y A numeric matrix of gene expression counts, with samples presented in rows and genes presented in columns.
 #' @param scaled Logical. Has z-score scaling been performed? Default is TRUE, being that the counts matrix has been scaled. If FALSE, z-score scaling of each gene will be performed.
-#' @param IdentifiHR The trained HR status predictor
 #' @param
-#' @return Some output
+#' @return A data frame containing the sample identifier, the predicted HR status and the probability that this prediction is accurate.
 #' @export
 #'
 #' @examples
@@ -19,7 +18,6 @@
 #' # data(tcgaOvScaled)
 #' # Predict HR status with IdentifiHR
 #' # predictHr(tcgaOvScaled, scaled = TRUE)
-#'
 
 predictHr <- function(y,
                       scaled) {
@@ -34,7 +32,7 @@ predictHr <- function(y,
                                    s = "lambda.min",
                                    type = "class") %>%
       as.data.frame() %>%
-      rownames_to_column(var = "Sample") %>%
+      tibble::rownames_to_column(var = "Sample") %>%
       dplyr::rename(., hrPrediction = lambda.min)
 
     predictedProb <- stats::predict(lmHrSig,
@@ -42,11 +40,10 @@ predictHr <- function(y,
                                     s = "lambda.min",
                                     type = "response") %>%
       as.data.frame() %>%
-      rownames_to_column(var = "Sample") %>%
+      tibble::rownames_to_column(var = "Sample") %>%
       dplyr::rename(., predictionProb = lambda.min)
 
     predictionHrDf <- left_join(predictionHr, predictedProb, by = "Sample")
-
 
     return(predictionHrDf)
   }
@@ -66,7 +63,7 @@ predictHr <- function(y,
                                    s = "lambda.min",
                                    type = "class") %>%
       as.data.frame() %>%
-      rownames_to_column(var = "Sample") %>%
+      tibble::rownames_to_column(var = "Sample") %>%
       dplyr::rename(., hrPrediction = lambda.min)
 
     predictedProb <- stats::predict(lmHrSig,
@@ -74,11 +71,10 @@ predictHr <- function(y,
                                     s = "lambda.min",
                                     type = "response") %>%
       as.data.frame() %>%
-      rownames_to_column(var = "Sample") %>%
+      tibble::rownames_to_column(var = "Sample") %>%
       dplyr::rename(., predictionProb = lambda.min)
 
     predictionHrDf <- left_join(predictionHr, predictedProb, by = "Sample")
-
 
     return(predictionHrDf)
   }
