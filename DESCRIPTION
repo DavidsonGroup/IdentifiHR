@@ -1,0 +1,19 @@
+Package: IdentifyHR
+Type: Package
+Title: What the Package Does (Title Case)
+Version: 0.1.0
+Author: @R: 
+    c(person(given = "Ashley", 
+            family = "Weir",
+            role = c("aut"),
+            email = "weir.a@wehi.edu.au",
+            comment = c(ORCID = "????")))
+Description: More about what it does (maybe more than one line)
+    Use four spaces when indenting paragraphs within the Description.
+License: GPL-3 + file LICENSE
+Encoding: UTF-8
+LazyData: false
+Imports:
+    tidyverse, 
+    stats
+RoxygenNote: 7.2.3
