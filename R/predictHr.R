@@ -90,39 +90,6 @@ predictHr <- function(y,
     }
 
   }
-  if(logCpm == "FALSE") {
-
-    if(scaled == "TRUE") {
-
-      print("Counts are being logCpm transformed")
-      
-      y <- cpm(y, log = TRUE)
-
-      print("Predicting HR status using scaled gene expression counts")
-
-      # Make predictions using the trained model
-      predictionHr <- stats::predict(lmHrSig,
-                                     newx = y,
-                                     s = "lambda.min",
-                                     type = "class") %>%
-        as.data.frame() %>%
-        tibble::rownames_to_column(var = "Sample") %>%
-        dplyr::rename(., hrPrediction = lambda.min)
-
-      predictedProb <- stats::predict(lmHrSig,
-                                      newx = y,
-                                      s = "lambda.min",
-                                      type = "response") %>%
-        as.data.frame() %>%
-        tibble::rownames_to_column(var = "Sample") %>%
-        dplyr::rename(., predictionProb = lambda.min)
-
-      predictionHrDf <- left_join(predictionHr, predictedProb, by = "Sample")
-
-      return(predictionHrDf)
-    }
-
-  }
 
   if(logCpm == "FALSE") {
 
@@ -173,5 +140,4 @@ predictHr <- function(y,
   }
 }
 
-test <- predictHr(testDataDe, scaled = TRUE)
-library(edge)
+test <- predictHr(testDataDe, logCpm = FALSE, scaled = TRUE)
