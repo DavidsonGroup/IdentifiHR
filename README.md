@@ -1,5 +1,5 @@
 # IdentifiHR
-IdentifiHR is a gene expression classifer of homologous recombination (HR) status in high-grade serous ovarian carcinoma.
+IdentifiHR is a predictive model of homologous recombination (HR) status in high-grade serous ovarian carcinoma that uses only gene expression.
 
 ## Installation 
 
