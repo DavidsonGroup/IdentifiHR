@@ -1,4 +1,4 @@
-<img src="https://github.com/user-attachments/assets/4f46868c-df3b-4525-8fa7-e049dd74508c" width="100" height="100">
+<img src="https://github.com/user-attachments/assets/4f46868c-df3b-4525-8fa7-e049dd74508c" width="150" height="150" align="right">
 
 # IdentifiHR                                                                
 
