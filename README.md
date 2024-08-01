@@ -1,4 +1,4 @@
-![identifiHRLogo](https://github.com/user-attachments/assets/4f46868c-df3b-4525-8fa7-e049dd74508c =250x250)
+<img src="https://github.com/user-attachments/assets/4f46868c-df3b-4525-8fa7-e049dd74508c" width="100" height="100">
 
 # IdentifiHR                                                                
 
