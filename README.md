@@ -2,6 +2,8 @@
 <img src="https://github.com/user-attachments/assets/4f46868c-df3b-4525-8fa7-e049dd74508c" width="150" height="150" align="right">
 IdentifiHR is a predictive machine learning model of homologous recombination (HR) status in high-grade serous ovarian carcinoma (HGSC) that uses only gene expression.
 
+
+
 ## Background
 Approximately half of all HGSCs have a therapeutically targetable defect in the HR DNA repair mechanism. HGSC is the most commonly HR deficient (HRD) cancer type, largely due to the frequency of germline and somatic mutations in the HR-genes, BRCA1/2. While there are genomic methods and some transcriptomic signatures, developed for alternate cancers, to identify HRD patients, there are no gene expression-based tools to predict HR repair status in HGSC specifically. We have built the first HGSC-specific model to predict HR repair status using gene expression.
 
