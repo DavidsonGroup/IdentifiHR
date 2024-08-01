@@ -19,7 +19,7 @@ The IdentifiHR R package has several functions to support use, and can be used t
 
 The processCounts() function subsets the input matrix to only the genes required for predicition. It then transforms counts with log2 counts-per-million (CPM) to normalise for library size differences, and scales genes using a z-score, whereby the mean and standard deviation are taken from our training dataset.
 
-Processed counts can then be used by the predictHR() function to estimate the probability that a sample is HRD. PredictHR() uses the trained IdentiiHR model to infer HR status from the expression of only 209 genes.
+Processed counts can then be used by the predictHr() function to estimate the probability that a sample is HRD. The predictHr() function uses the trained IdentiiHR model to infer HR status from the expression of only 209 genes.
 
 The output of IdentifiHR is a data frame containing both a discrete prediction of HR status, being HRD OR HR proficient (HRP), in addiiton to the probability that a sample is HRD.
 
