@@ -1,4 +1,5 @@
- ![identifiHRLogo](https://github.com/user-attachments/assets/4188a9c4-d763-4ff5-824a-9b930af50c3b)
+![identifiHRLogo](https://github.com/user-attachments/assets/4f46868c-df3b-4525-8fa7-e049dd74508c =250x250)
+
 # IdentifiHR                                                                
 
 IdentifiHR is a predictive machine learning model of homologous recombination (HR) status in high-grade serous ovarian carcinoma (HGSC) that uses only gene expression.
