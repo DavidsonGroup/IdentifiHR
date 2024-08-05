@@ -9,6 +9,8 @@
 #' @importFrom stats predict
 #' @export
 #'
+#' @author Ashley L Weir, \email{weir.a@@wehi.edu.au}
+#'
 #' @examples
 #' ## NOT RUN
 #' # Load packages

@@ -11,6 +11,8 @@
 #' @importFrom edgeR cpm
 #' @export
 #'
+#' @author Ashley L Weir, \email{weir.a@@wehi.edu.au}
+#'
 #' @examples
 #' 
 #' 
