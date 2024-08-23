@@ -12,10 +12,7 @@
 #' @export
 #'
 #' @author Ashley L Weir, \email{weir.a@@wehi.edu.au}
-#'
-#' @examples
-#' 
-#' 
+
 processCounts <- function(y,
                           logCpm,
                           scaled,
@@ -43,7 +40,7 @@ processCounts <- function(y,
     if(logCpm == "FALSE") {
       if(scaled == "FALSE") {
         print("Counts are being logCpm transformed")
-        y <- cpm(y, log = TRUE)
+        y <- edgeR::cpm(y, log = TRUE)
         print("Z-score scaling gene expression counts and then predicting HR status using scaled gene expression counts")
         # Z-score scale each row of the counts matrix
         y <- scale(y,
@@ -88,7 +85,7 @@ processCounts <- function(y,
     if(logCpm == "FALSE") {
       if(scaled == "FALSE") {
         print("Counts are being logCpm transformed")
-        y <- cpm(y, log = TRUE)
+        y <- edgeR::cpm(y, log = TRUE)
         print("Z-score scaling gene expression counts and then predicting HR status using scaled gene expression counts")
         # Z-score scale each row of the counts matrix
         y <- scale(y,
@@ -130,7 +127,7 @@ processCounts <- function(y,
     if(logCpm == "FALSE") {
       if(scaled == "FALSE") {
         print("Counts are being logCpm transformed")
-        y <- cpm(y, log = TRUE)
+        y <- edgeR::cpm(y, log = TRUE)
         print("Z-score scaling gene expression counts and then predicting HR status using scaled gene expression counts")
         # Z-score scale each row of the counts matrix
         y <- scale(y,
@@ -151,5 +148,3 @@ processCounts <- function(y,
   }
   
 }
-
-test <- processCounts(paadCounts, logCpm = FALSE, scaled = FALSE, geneIds = "ENSEMBL")
