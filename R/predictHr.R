@@ -29,16 +29,16 @@ predictHr <- function(y) {
   predictionHr <- stats::predict(lmHrSig,
                                  newx = y,
                                  s = "lambda.min",
-                                 type = "class") %>%
-    as.data.frame() %>%
-    tibble::rownames_to_column(var = "Sample") %>%
+                                 type = "class") |>
+    as.data.frame() |>
+    tibble::rownames_to_column(var = "Sample") |>
     dplyr::rename(., hrPrediction = lambda.min)
   predictedProb <- stats::predict(lmHrSig,
                                   newx = y,
                                   s = "lambda.min",
-                                  type = "response") %>%
-    as.data.frame() %>%
-    tibble::rownames_to_column(var = "Sample") %>%
+                                  type = "response") |>
+    as.data.frame() |>
+    tibble::rownames_to_column(var = "Sample") |>
     dplyr::rename(., predictionProb = lambda.min)
   predictionHrDf <- left_join(predictionHr, predictedProb, by = "Sample")
   return(predictionHrDf)
