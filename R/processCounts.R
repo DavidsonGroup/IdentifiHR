@@ -100,11 +100,7 @@ processCounts <- function(y,
         
       }
       
-    }
-    
-    if (identical(rownames(identifiHR_meanModelGenes), rownames(identifiHR_sdModelGenes)) == TRUE) {
-      
-      if (identical(rownames(identifiHR_meanModelGenes), colnames(countsCpm)) == FALSE) {
+    } else if (identical(rownames(identifiHR_meanModelGenes), colnames(countsCpm)) == FALSE) {
         
         stop("Error in gene indexing. Please check input matrix and/or notify package author.")
         
@@ -112,8 +108,6 @@ processCounts <- function(y,
       
     }
     
-  }
-  
   if(geneIds == "HGNC") {
     
     # Replace hgnc with ensembl
