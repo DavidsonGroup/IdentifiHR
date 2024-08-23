@@ -186,7 +186,8 @@ processCounts <- function(y,
         
         message("Z-score scaling genes using mean and sd from training cohort.")
         # Z score scale counts using vectors saved from model training
-        countsCpmZ <- (countsCpm - identifiHR_meanModelGenes$mean) / identifiHR_sdModelGenes$sd
+        countsCpmZ <- sweep(countsCpm, 2, identifiHR_meanModelGenes$mean, FUN = "-")
+        countsCpmZ <- sweep(countsCpmZ, 2, identifiHR_sdModelGenes$sd, FUN = "/")
         countsCpmZ <- t(countsCpmZ) 
         message("Counts successfully processed for IdentifiHR.")
         return(countsCpmZ)
@@ -279,7 +280,8 @@ processCounts <- function(y,
         
         message("Z-score scaling genes using mean and sd from training cohort.")
         # Z score scale counts using vectors saved from model training
-        countsCpmZ <- (countsCpm - identifiHR_meanModelGenes$mean) / identifiHR_sdModelGenes$sd
+        countsCpmZ <- sweep(countsCpm, 2, identifiHR_meanModelGenes$mean, FUN = "-")
+        countsCpmZ <- sweep(countsCpmZ, 2, identifiHR_sdModelGenes$sd, FUN = "/")
         countsCpmZ <- t(countsCpmZ) 
         message("Counts successfully processed for IdentifiHR.")
         return(countsCpmZ)
