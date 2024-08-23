@@ -4,8 +4,7 @@
 #'
 #' @param y A numeric matrix of gene expression counts, with samples presented in rows and genes presented in columns.
 #' @return A data frame containing the sample identifier, the predicted HR status and the probability that a given sample if HRP.
-#' @import dplyr
-#' @importFrom stats predict
+#' @import dplyr, stats
 #' @export
 #'
 #' @author Ashley L Weir, \email{weir.a@@wehi.edu.au}
@@ -23,16 +22,17 @@
 #' # predictHr(tcgaOvScaled, scaled = TRUE)
 
 predictHr <- function(y) {
+  
   print("Predicting HR status using scaled gene expression counts")
   # Make predictions using the trained model
-  predictionHr <- stats::predict(modelIdentifiHR,
+  predictionHr <- stats::predict(lmHrSig,
                                  newx = y,
                                  s = "lambda.min",
                                  type = "class") |>
     as.data.frame() |>
     tibble::rownames_to_column(var = "Sample") |>
     dplyr::rename(., hrPrediction = lambda.min)
-  predictedProb <- stats::predict(modelIdentifiHR,
+  predictedProb <- stats::predict(lmHrSig,
                                   newx = y,
                                   s = "lambda.min",
                                   type = "response") |>
@@ -41,5 +41,7 @@ predictHr <- function(y) {
     dplyr::rename(., predictionProb = lambda.min)
   predictionHrDf <- left_join(predictionHr, predictedProb, by = "Sample")
   return(predictionHrDf)
+  
 }
 
+predictHr(countsCpmZ)

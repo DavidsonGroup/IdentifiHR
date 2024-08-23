@@ -9,4 +9,4 @@
 #' @source Created from training cohort for z score scaling.
 #' 
 #' @author Ashley L Weir, \email{weir.a@@wehi.edu.au}
-"meanModelGenesIdentifiHR"
+"modelMeanGenesIdentifiHR"

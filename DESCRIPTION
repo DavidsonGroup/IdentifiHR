@@ -16,6 +16,7 @@ LazyData: true
 Imports:
     dplyr,
     tidyverse, 
-    stats,
+    data.table,
     edgeR
+    stats
 RoxygenNote: 7.3.2
