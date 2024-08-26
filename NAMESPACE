@@ -2,9 +2,9 @@
 
 export(predictHr)
 export(processCounts)
-import(dplyr)
 importFrom(data.table,setDF)
 importFrom(data.table,setDT)
+importFrom(dplyr,left_join)
 importFrom(dplyr,rename)
 importFrom(edgeR,cpm)
 importFrom(stats,predict)
