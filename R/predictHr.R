@@ -7,7 +7,7 @@
 #' @importFrom dplyr rename
 #' @importFrom dplyr left_join
 #' @importFrom tibble rownames_to_column
-#' @importFrom stats predict
+#' @import stats 
 #' @export
 #'
 #' @author Ashley L Weir, \email{weir.a@@wehi.edu.au}
@@ -16,23 +16,25 @@
 #' # to add
 predictHr <- function(y) {
   
+  bestLambda <- modelIdentifiHR$lambda[99]
+  
   print("Predicting HR status using transformed and scaled gene expression counts")
   # Make predictions using the trained model
-  predictionHr <- stats::predict(modelIdentifiHR,
+  predictionHr <- predict(modelIdentifiHR,
                                  newx = y,
-                                 s = "lambda.min",
+                                 s = bestLambda,
                                  type = "class") |>
     as.data.frame() |>
     tibble::rownames_to_column(var = "Sample") |>
-    dplyr::rename(., hrPrediction = lambda.min)
+    dplyr::rename(., hrPrediction = s1)
   
-  predictedProb <- stats::predict(modelIdentifiHR,
+  predictedProb <- predict(modelIdentifiHR,
                                   newx = y,
-                                  s = "lambda.min",
+                                  s = bestLambda,
                                   type = "response") |>
     as.data.frame() |>
     tibble::rownames_to_column(var = "Sample") |>
-    dplyr::rename(., predictionProb = lambda.min)
+    dplyr::rename(., predictionProb = s1)
   predictionHrDf <- left_join(predictionHr, predictedProb, by = "Sample")
   
   return(predictionHrDf)

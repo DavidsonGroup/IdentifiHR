@@ -3,13 +3,14 @@
 \docType{data}
 \name{modelGeneId}
 \alias{modelGeneId}
-\title{IdentifiHR}
+\title{IdentifiHR: gene annotations and beta coefficients}
 \format{
 A data frame with 2604 rows and 3 columns:
 \describe{
   \item{ENSEMBL}{A character vector of ensembl identifiers}
   \item{HGNC}{A character vector of hgnc symbols}
   \item{ENTREZ}{A numeric vector of entrez identifiers}
+  \item{betaCoeff}{A numeric vector of weighted genes in the trained IdentifiHR model}
 }
 }
 \source{

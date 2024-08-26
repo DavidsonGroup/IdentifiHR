@@ -3,7 +3,7 @@
 \docType{data}
 \name{modelIdentifiHR}
 \alias{modelIdentifiHR}
-\title{IdentifiHR}
+\title{IdentifiHR: trained elastic net penalised regression model}
 \format{
 An object of class \code{"glmnet"}.
 }
