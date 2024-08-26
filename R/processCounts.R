@@ -120,7 +120,7 @@ processCounts <- function(y,
       dplyr::select(-c(hgnc_symbol, entrezgene_id))
     
     # Extract vector of ensembl identifiers required
-    geneId <- geneId$ENSEMBL
+    geneId <- modelGeneId$ENSEMBL
     
     # Strip any potential ensembl version numbers
     rownames(y) <- gsub("\\..*","", rownames(y))
@@ -214,7 +214,7 @@ processCounts <- function(y,
       dplyr::select(-c(hgnc_symbol, entrezgene_id))
     
     # Extract vector of ensembl identifiers required
-    geneId <- geneId$ENSEMBL
+    geneId <- modelGeneId$ENSEMBL
     
     # Strip any potential ensembl version numbers
     rownames(y) <- gsub("\\..*","", rownames(y))
