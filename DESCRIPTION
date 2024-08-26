@@ -8,6 +8,7 @@ Author: @R:
             role = c("aut", "cre"),
             email = "weir.a@wehi.edu.au",
             comment = c(ORCID = "0000-0002-3072-2616")))
+Maintainer: Ashley L Weir <weir.a@wehi.edu.au>
 Description: IdentifiHR is a trained logistic regression model that can predict HR status, being HR deficient (HRD) or HR proficient (HRP), in addition to the probability of a sample being HRD, using only gene expression. IdentifiHR first subsets raw gene expression counts collected from RNA sequencing to only those required for count transcormation and scaling (n = 2604 genes), and then uses the weighted abundances of 209 of these genes to predict HR status in HGSC.
 Depends: R (>= 3.5.0)
 License: GPL-3 + file LICENSE
@@ -17,6 +18,7 @@ Imports:
     dplyr,
     tidyverse, 
     data.table,
+    tibble,
     edgeR,
     stats
 RoxygenNote: 7.3.2

@@ -7,7 +7,7 @@
 predictHr(y)
 }
 \arguments{
-\item{y}{A numeric matrix of gene expression counts, with samples presented in rows and genes presented in columns.}
+\item{y}{A numeric matrix of gene expression abundances from the output of the "processCounts()" function, with samples presented in rows and genes presented in columns.}
 }
 \value{
 A data frame containing the sample identifier, the predicted HR status and the probability that a given sample if HRP.
@@ -16,16 +16,7 @@ A data frame containing the sample identifier, the predicted HR status and the p
 The "predictHr" function utilises IdentifiHR, a pre-trained penalised logistic regression classifier, to predict homologous recombination status. While IdentifiHR was trained to classify high-grade serous ovarian carcinomas, it can be applied to other cancer types, though the accuracy of classification will be reduced.
 }
 \examples{
-## NOT RUN
-# Load packages
-# library(dplyr)
-# library(tidyverse)
-# library(stats)
-# library(edgeR)
-# Load data
-# data(tcgaOvScaled)
-# Predict HR status with IdentifiHR
-# predictHr(tcgaOvScaled, scaled = TRUE)
+# to add
 }
 \author{
 Ashley L Weir, \email{weir.a@wehi.edu.au}
