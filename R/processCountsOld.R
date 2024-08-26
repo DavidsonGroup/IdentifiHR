@@ -13,7 +13,7 @@
 #'
 #' @author Ashley L Weir, \email{weir.a@@wehi.edu.au}
 
-processCounts <- function(y,
+processCountsOld <- function(y,
                           logCpm,
                           scaled,
                           geneIds) {

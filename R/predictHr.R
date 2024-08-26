@@ -4,7 +4,7 @@
 #'
 #' @param y A numeric matrix of gene expression counts, with samples presented in rows and genes presented in columns.
 #' @return A data frame containing the sample identifier, the predicted HR status and the probability that a given sample if HRP.
-#' @import dplyr, stats
+#' @import dplyr, stats, glmnet
 #' @export
 #'
 #' @author Ashley L Weir, \email{weir.a@@wehi.edu.au}
@@ -44,4 +44,3 @@ predictHr <- function(y) {
   
 }
 
-predictHr(countsCpmZ)
