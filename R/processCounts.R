@@ -74,7 +74,7 @@ processCounts <- function(y,
       
       countsT <- t(modelFillImp[ , geneId]) # order genes
       
-    } else if (identical(sort(colnames(countsT)), sort(geneId)) == TRUE) {
+    } else if (identical(sort(colnames(countsT)), sort(geneId)) == TRUE) { # if all genes are present
       
       countsT <- countsT[ , geneId] # order genes
       message(cat(paste0(((table(colnames(countsT) == geneId)/2604)[-2])*100, "%", sep = " ", "of the 2604 genes required for IdentifiHR are present.")))
@@ -163,7 +163,7 @@ processCounts <- function(y,
       countsT <- modelFillImp
       countsT <- countsT[ , geneId] # order genes
       
-    } else if (identical(sort(colnames(countsT)), sort(geneId)) == TRUE) {
+    } else if (identical(sort(colnames(countsT)), sort(geneId)) == TRUE) { # if all genes are present
       
       countsT <- countsT[ , geneId] # order genes
       message(cat(paste0(((table(colnames(countsT) == geneId)/2604)[-2])*100, "%", sep = " ", "of the 2604 genes required for IdentifiHR are present.")))
@@ -257,7 +257,7 @@ processCounts <- function(y,
       countsT <- modelFillImp
       countsT <- countsT[ , geneId] # order genes
       
-    } else if (identical(sort(colnames(countsT)), sort(geneId)) == TRUE) {
+    } else if (identical(sort(colnames(countsT)), sort(geneId)) == TRUE) { # if all genes are present
       
       countsT <- countsT[ , geneId] # order genes
       message(cat(paste0(((table(colnames(countsT) == geneId)/2604)[-2])*100, "%", sep = " ", "of the 2604 genes required for IdentifiHR are present.")))
