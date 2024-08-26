@@ -25,14 +25,14 @@ predictHr <- function(y) {
   
   print("Predicting HR status using scaled gene expression counts")
   # Make predictions using the trained model
-  predictionHr <- stats::predict(lmHrSig,
+  predictionHr <- stats::predict(modelIdentifiHR,
                                  newx = y,
                                  s = "lambda.min",
                                  type = "class") |>
     as.data.frame() |>
     tibble::rownames_to_column(var = "Sample") |>
     dplyr::rename(., hrPrediction = lambda.min)
-  predictedProb <- stats::predict(lmHrSig,
+  predictedProb <- stats::predict(modelIdentifiHR,
                                   newx = y,
                                   s = "lambda.min",
                                   type = "response") |>

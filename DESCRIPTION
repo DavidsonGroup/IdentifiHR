@@ -17,6 +17,6 @@ Imports:
     dplyr,
     tidyverse, 
     data.table,
-    edgeR
+    edgeR,
     stats
 RoxygenNote: 7.3.2
