@@ -1,4 +1,4 @@
-#' IdentifiHR
+#' IdentifiHR: gene annotations and beta coefficients
 #'
 #' Identifiers for model genes
 #'
@@ -8,6 +8,7 @@
 #'   \item{ENSEMBL}{A character vector of ensembl identifiers}
 #'   \item{HGNC}{A character vector of hgnc symbols}
 #'   \item{ENTREZ}{A numeric vector of entrez identifiers}
+#'   \item{betaCoeff}{A numeric vector of weighted genes in the trained IdentifiHR model}
 #' }
 #' 
 #' @source Created for subsetting genes down to those required by identifiHR. Generated from top table of DE analysis.

@@ -1,4 +1,4 @@
-#' IdentifiHR
+#' IdentifiHR: trained elastic net penalised regression model
 #'
 #' Trained IdentifiHR logistic regression model that can predict HR status using the weighted expression of 209 genes.
 #'
