@@ -2,7 +2,7 @@
 % Please edit documentation in R/predictHr.R
 \name{predictHr}
 \alias{predictHr}
-\title{IdentifiHR}
+\title{Predict HR status using processed gene expresssion counts}
 \usage{
 predictHr(y)
 }

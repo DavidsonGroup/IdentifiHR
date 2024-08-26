@@ -2,12 +2,12 @@
 % Please edit documentation in R/processCounts.R
 \name{processCounts}
 \alias{processCounts}
-\title{IdentifiHR}
+\title{Process raw gene expression counts for prediction}
 \usage{
 processCounts(y, geneIds)
 }
 \arguments{
-\item{y}{A numeric matrix of raw gene expression counts, with genes presented in rownames and samples presented in columns.}
+\item{y}{A numeric matrix of raw gene expression counts, with genes presented as rownames and samples presented in columns.}
 
 \item{geneIds}{How are genes annotated? Specify either "ENSEMBL", "HGNC" or "ENTREZ" ("ENSEMBL" is preferred).}
 }
