@@ -2,6 +2,7 @@
 #'
 #' Identifiers for model genes
 #'
+#' @docType data
 #' @format A data frame with 2604 rows and 3 columns:
 #' \describe{
 #'   \item{ENSEMBL}{A character vector of ensembl identifiers}
