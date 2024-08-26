@@ -32,7 +32,7 @@ processCounts <- function(y,
   if(geneIds == "ENSEMBL") {
     
     # Extract vector of ensembl identifiers required
-    geneId <- geneId$ENSEMBL
+    geneId <- modelGeneId$ENSEMBL
     
     # Strip any potential ensembl version numbers
     rownames(y) <- gsub("\\..*","", rownames(y))
@@ -86,21 +86,21 @@ processCounts <- function(y,
     countsCpm <- edgeR::cpm(countsT, log = TRUE)
     message("Normalising sequencing depth.")
     
-    if (identical(rownames(identifiHR_meanModelGenes), rownames(identifiHR_sdModelGenes)) == TRUE) {
+    if (identical(rownames(modelMeanGenesIdentifiHR), rownames(modelSDGenesIdentifiHR)) == TRUE) {
       
-      if (identical(rownames(identifiHR_meanModelGenes), colnames(countsCpm)) == TRUE) {
+      if (identical(rownames(modelMeanGenesIdentifiHR), colnames(countsCpm)) == TRUE) {
         
         message("Z-score scaling genes using mean and sd from training cohort.")
         # Z score scale counts using vectors saved from model training
-        countsCpmZ <- sweep(countsCpm, 2, identifiHR_meanModelGenes$mean, FUN = "-")
-        countsCpmZ <- sweep(countsCpmZ, 2, identifiHR_sdModelGenes$sd, FUN = "/")
+        countsCpmZ <- sweep(countsCpm, 2, modelMeanGenesIdentifiHR$mean, FUN = "-")
+        countsCpmZ <- sweep(countsCpmZ, 2, modelSDGenesIdentifiHR$sd, FUN = "/")
         countsCpmZ <- t(countsCpmZ) 
         message("Counts successfully processed for IdentifiHR.")
         return(countsCpmZ)
         
       }
       
-    } else if (identical(rownames(identifiHR_meanModelGenes), colnames(countsCpm)) == FALSE) {
+    } else if (identical(rownames(modelMeanGenesIdentifiHR), colnames(countsCpm)) == FALSE) {
         
         stop("Error in gene indexing. Please check input matrix and/or notify package author.")
         
@@ -174,14 +174,14 @@ processCounts <- function(y,
     countsCpm <- edgeR::cpm(countsT, log = TRUE)
     message("Normalising sequencing depth.")
     
-    if (identical(rownames(identifiHR_meanModelGenes), rownames(identifiHR_sdModelGenes)) == TRUE) {
+    if (identical(rownames(modelMeanGenesIdentifiHR), rownames(modelSDGenesIdentifiHR)) == TRUE) {
       
-      if (identical(rownames(identifiHR_meanModelGenes), colnames(countsCpm)) == TRUE) {
+      if (identical(rownames(modelMeanGenesIdentifiHR), colnames(countsCpm)) == TRUE) {
         
         message("Z-score scaling genes using mean and sd from training cohort.")
         # Z score scale counts using vectors saved from model training
-        countsCpmZ <- sweep(countsCpm, 2, identifiHR_meanModelGenes$mean, FUN = "-")
-        countsCpmZ <- sweep(countsCpmZ, 2, identifiHR_sdModelGenes$sd, FUN = "/")
+        countsCpmZ <- sweep(countsCpm, 2, modelMeanGenesIdentifiHR$mean, FUN = "-")
+        countsCpmZ <- sweep(countsCpmZ, 2, modelSDGenesIdentifiHR$sd, FUN = "/")
         countsCpmZ <- t(countsCpmZ) 
         message("Counts successfully processed for IdentifiHR.")
         return(countsCpmZ)
@@ -190,9 +190,9 @@ processCounts <- function(y,
       
     }
     
-    if (identical(rownames(identifiHR_meanModelGenes), rownames(identifiHR_sdModelGenes)) == TRUE) {
+    if (identical(rownames(modelMeanGenesIdentifiHR), rownames(modelSDGenesIdentifiHR)) == TRUE) {
       
-      if (identical(rownames(identifiHR_meanModelGenes), colnames(countsCpm)) == FALSE) {
+      if (identical(rownames(modelMeanGenesIdentifiHR), colnames(countsCpm)) == FALSE) {
         
         stop("Error in gene indexing. Please check input matrix and/or notify package author.")
         
@@ -268,14 +268,14 @@ processCounts <- function(y,
     countsCpm <- edgeR::cpm(countsT, log = TRUE)
     message("Normalising sequencing depth.")
     
-    if (identical(rownames(identifiHR_meanModelGenes), rownames(identifiHR_sdModelGenes)) == TRUE) {
+    if (identical(rownames(modelMeanGenesIdentifiHR), rownames(modelSDGenesIdentifiHR)) == TRUE) {
       
-      if (identical(rownames(identifiHR_meanModelGenes), colnames(countsCpm)) == TRUE) {
+      if (identical(rownames(modelMeanGenesIdentifiHR), colnames(countsCpm)) == TRUE) {
         
         message("Z-score scaling genes using mean and sd from training cohort.")
         # Z score scale counts using vectors saved from model training
-        countsCpmZ <- sweep(countsCpm, 2, identifiHR_meanModelGenes$mean, FUN = "-")
-        countsCpmZ <- sweep(countsCpmZ, 2, identifiHR_sdModelGenes$sd, FUN = "/")
+        countsCpmZ <- sweep(countsCpm, 2, modelMeanGenesIdentifiHR$mean, FUN = "-")
+        countsCpmZ <- sweep(countsCpmZ, 2, modelSDGenesIdentifiHR$sd, FUN = "/")
         countsCpmZ <- t(countsCpmZ) 
         message("Counts successfully processed for IdentifiHR.")
         return(countsCpmZ)
@@ -284,9 +284,9 @@ processCounts <- function(y,
       
     }
     
-    if (identical(rownames(identifiHR_meanModelGenes), rownames(identifiHR_sdModelGenes)) == TRUE) {
+    if (identical(rownames(modelMeanGenesIdentifiHR), rownames(modelSDGenesIdentifiHR)) == TRUE) {
       
-      if (identical(rownames(identifiHR_meanModelGenes), colnames(countsCpm)) == FALSE) {
+      if (identical(rownames(modelMeanGenesIdentifiHR), colnames(countsCpm)) == FALSE) {
         
         stop("Error in gene indexing. Please check input matrix and/or notify package author.")
         
