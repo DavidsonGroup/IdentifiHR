@@ -25,6 +25,7 @@ predictHr <- function(y) {
     as.data.frame() |>
     tibble::rownames_to_column(var = "Sample") |>
     dplyr::rename(., hrPrediction = lambda.min)
+  
   predictedProb <- stats::predict(modelIdentifiHR,
                                   newx = y,
                                   s = "lambda.min",
@@ -33,6 +34,7 @@ predictHr <- function(y) {
     tibble::rownames_to_column(var = "Sample") |>
     dplyr::rename(., predictionProb = lambda.min)
   predictionHrDf <- left_join(predictionHr, predictedProb, by = "Sample")
+  
   return(predictionHrDf)
   
 }
