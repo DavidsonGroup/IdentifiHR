@@ -4,6 +4,8 @@ IdentifiHR is a predictive machine learning model of homologous recombination (H
 
 Please see the [wiki](https://github.com/DavidsonGroup/IdentifiHR/wiki) for installation and usage documentation, in addititon to worked examples.
 
+For more information about model training and testing, please read our [preprint](https://www.biorxiv.org/content/10.1101/2024.08.15.608185v1).
+
 ## Installation 
 
 To install the package, use the following script in R:
