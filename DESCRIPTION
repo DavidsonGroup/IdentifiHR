@@ -16,9 +16,8 @@ Encoding: UTF-8
 LazyData: true
 Imports:
     dplyr,
-    tidyverse, 
-    data.table,
     tibble,
     edgeR,
+    glmnet,
     stats
 RoxygenNote: 7.3.2
