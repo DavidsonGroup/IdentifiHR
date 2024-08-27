@@ -10,15 +10,15 @@ predictHr(y)
 \item{y}{A numeric matrix of gene expression abundances from the output of the "processCounts()" function, with samples presented in rows and genes presented in columns.}
 }
 \value{
-A data frame containing the sample identifier, the predicted HR status and the probability that a given sample if HRP.
+A data frame containing the following columns:
 \itemize{
   \item Sample - A character of sample identifiers taken from the input.
-  \item hrPrediction - A character vector indicating the discrete homologous recombination (HR) status of a sample, being deficient ("HRD") or proficient ("HRP").
+  \item hrPrediction - A character vector indicating the discrete HR status of a sample, being deficient ("HRD") or proficient ("HRP").
   \item predictionProbability - A numeric vector of the probability that a given sample is HRD.
 }
 }
 \description{
-The "predictHr" function utilises IdentifiHR, a pre-trained penalised logistic regression classifier, to predict homologous recombination status. While IdentifiHR was trained to classify high-grade serous ovarian carcinomas, it can be applied to other cancer types, though the accuracy of classification will be reduced.
+The "predictHr" function utilises IdentifiHR, a pre-trained penalised logistic regression model, to predict homologous recombination (HR) status in high-grade serous ovarin carcinoma (HGSC). IdentifiHR was trained to predict HR status high-grade serous ovarian carcinomas using bulk RNA sequencing data. It can be applied to pseudobulked HGSC cell samples profilled by single-cell RNA sequencing. We have not tested IdentifiHR's accuracy in non HGSC samples, such as other cancer types, though we expect accuracy of prediction would be reduced.
 }
 \examples{
 #See GitHub wiki
