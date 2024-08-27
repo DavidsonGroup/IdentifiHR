@@ -203,7 +203,7 @@ processCounts <- function(y,
     y <- y |>
       as.data.frame() |>
       rownames_to_column(var = "hgnc_symbol") |>
-      left_join(geneId, by = "hgnc_symbol") |>
+      left_join(modelGeneId, by = "hgnc_symbol") |>
       dplyr::filter(!is.na(ENSEMBL)) |>
       column_to_rownames(var = "ENSEMBL") |>
       dplyr::select(-c(hgnc_symbol, entrezgene_id))
@@ -288,7 +288,7 @@ processCounts <- function(y,
     y <- y |>
       as.data.frame() |>
       rownames_to_column(var = "hgnc_symbol") |>
-      left_join(geneId, by = "hgnc_symbol") |>
+      left_join(modelGeneId, by = "hgnc_symbol") |>
       dplyr::filter(!is.na(ENSEMBL)) |>
       column_to_rownames(var = "ENSEMBL") |>
       dplyr::select(-c(hgnc_symbol, entrezgene_id))
@@ -382,7 +382,7 @@ processCounts <- function(y,
     y <- y |>
       as.data.frame() |>
       rownames_to_column(var = "entrezgene_id") |>
-      left_join(geneId, by = "entrezgene_id") |>
+      left_join(modelGeneId, by = "entrezgene_id") |>
       dplyr::filter(!is.na(ENSEMBL)) |>
       column_to_rownames(var = "ENSEMBL") |>
       dplyr::select(-c(hgnc_symbol, entrezgene_id))
@@ -467,7 +467,7 @@ processCounts <- function(y,
     y <- y |>
       as.data.frame() |>
       rownames_to_column(var = "entrezgene_id") |>
-      left_join(geneId, by = "entrezgene_id") |>
+      left_join(modelGeneId, by = "entrezgene_id") |>
       dplyr::filter(!is.na(ENSEMBL)) |>
       column_to_rownames(var = "ENSEMBL") |>
       dplyr::select(-c(hgnc_symbol, entrezgene_id))
