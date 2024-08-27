@@ -14,27 +14,28 @@
 #'
 #' @examples
 #' # to add
+
 predictHr <- function(y) {
   
   bestLambda <- modelIdentifiHR$lambda[99]
   
-  print("Predicting HR status using transformed and scaled gene expression counts")
+  print("Predicting HR status using transformed and scaled gene expression counts.")
   # Make predictions using the trained model
   predictionHr <- predict(modelIdentifiHR,
-                                 newx = y,
+                                 newx = t(y),
                                  s = bestLambda,
                                  type = "class") |>
     as.data.frame() |>
     tibble::rownames_to_column(var = "Sample") |>
-    dplyr::rename(., hrPrediction = s1)
+    dplyr::rename(hrPrediction = s1)
   
   predictedProb <- predict(modelIdentifiHR,
-                                  newx = y,
+                                  newx = t(y),
                                   s = bestLambda,
                                   type = "response") |>
     as.data.frame() |>
     tibble::rownames_to_column(var = "Sample") |>
-    dplyr::rename(., predictionProb = s1)
+    dplyr::rename(predictionProb = s1)
   predictionHrDf <- left_join(predictionHr, predictedProb, by = "Sample")
   
   return(predictionHrDf)
