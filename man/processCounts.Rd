@@ -7,7 +7,7 @@
 processCounts(y, geneIds)
 }
 \arguments{
-\item{y}{A numeric matrix or dataframe of raw gene expression counts, with genes presented as rownames and samples presented in columns.}
+\item{y}{A numeric matrix or data frame of raw gene expression counts, with genes presented as rownames and samples presented in columns.}
 
 \item{geneIds}{How are genes annotated? Specify either "ENSEMBL", "HGNC" or "ENTREZ" ("ENSEMBL" is preferred).}
 }
@@ -18,7 +18,7 @@ A numeric matrix of counts for model genes, that has been log2-counts-per-millio
 The "processCounts" function prepares gene expression counts for input into the IdentifiHR classifier.
 }
 \examples{
-# to add
+#See GitHub wiki
 }
 \author{
 Ashley L Weir, \email{weir.a@wehi.edu.au}
