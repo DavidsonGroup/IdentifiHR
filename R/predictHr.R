@@ -7,7 +7,8 @@
 #' @importFrom dplyr rename
 #' @importFrom dplyr left_join
 #' @importFrom tibble rownames_to_column
-#' @import stats 
+#' @importFrom stats predict
+#' @import glmnet 
 #' @export
 #'
 #' @author Ashley L Weir, \email{weir.a@@wehi.edu.au}
