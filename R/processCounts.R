@@ -112,7 +112,7 @@ processCounts <- function(y,
     
   }
   
-  if(ncol(y) == 1 & geneId == "ENSEMBL") {
+  if(ncol(y) == 1 & geneIds == "ENSEMBL") {
     
     if (identical(rownames(modelMeanGenesIdentifiHR), rownames(modelSDGenesIdentifiHR)) == TRUE) {
       
@@ -282,7 +282,7 @@ processCounts <- function(y,
     
   }
   
-  if(ncol(y) == 1 & geneId == "HGNC") {
+  if(ncol(y) == 1 & geneIds == "HGNC") {
     
     # Replace hgnc with ensembl
     y <- y |>
@@ -461,7 +461,7 @@ processCounts <- function(y,
     
   }
   
-  if(ncol(y) == 1 & geneId == "HGNC") {
+  if(ncol(y) == 1 & geneIds == "HGNC") {
     
     # Replace entrez with ensembl
     y <- y |>
