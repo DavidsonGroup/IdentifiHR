@@ -6,7 +6,6 @@
 #' @param geneIds How are genes annotated? Specify either "ENSEMBL", "HGNC" or "ENTREZ" ("ENSEMBL" is preferred).
 #' @return A numeric matrix of counts for model genes, that has been log2-counts-per-million transformed and z-score scaled across genes.
 #' @importFrom edgeR cpm
-#' @importFrom tibble rownames_to_column 
 #' @importFrom tibble column_to_rownames
 #' @importFrom dplyr select 
 #' @export
@@ -68,7 +67,7 @@ processCounts <- function(y,
       missingGenes <- setdiff(geneId, colnames(countsTSub))
       warning(paste0("The following genes are missing from the input: ", 
                      paste0(missingGenes, collapse = ", "),
-                     ". Missing genes will have their counts set to zero though the model's accuracy will be reduced; we recommend also running the interrogateMissingness() function."))
+                     ". Missing genes will have their counts set to zero and predictions will be made, though the model's accuracy will be reduced; we recommend also running the interrogateMissingness() function."))
       
       # Fill missing gene columns with zero values
       
@@ -146,7 +145,7 @@ processCounts <- function(y,
       missingGenes <- setdiff(geneId, rownames(y))
       warning(paste0("The following genes are missing from the input: ", 
                      paste0(missingGenes, collapse = ", "),
-                     ". Missing genes will have their counts set to zero though the model's accuracy will be reduced; we recommend also running the interrogateMissingness() function."))
+                     ". Missing genes will have their counts set to zero and predictions will be made, though the model's accuracy will be reduced; we recommend also running the interrogateMissingness() function."))
       
       if (length(missingGenes) > 0) {
         # Create a data frame with missing rows filled with zeros
@@ -200,13 +199,13 @@ processCounts <- function(y,
   if(ncol(y) > 1 & geneIds == "HGNC") {
     
     # Replace hgnc with ensembl
-    y <- y |>
-      as.data.frame() |>
-      rownames_to_column(var = "hgnc_symbol") |>
-      left_join(modelGeneId, by = "hgnc_symbol") |>
+    y <- as.data.frame(y) 
+    y$hgnc_symbol <- rownames(y)
+    y$hgnc_symbol <- as.character(y$hgnc_symbol)
+    y <- left_join(y, modelGeneId, by = "hgnc_symbol") |>
       dplyr::filter(!is.na(ENSEMBL)) |>
       column_to_rownames(var = "ENSEMBL") |>
-      dplyr::select(-c(hgnc_symbol, entrezgene_id))
+      dplyr::select(-c(hgnc_symbol, entrezgene_id, betaCoef))
     
     if (identical(rownames(modelMeanGenesIdentifiHR), rownames(modelSDGenesIdentifiHR)) == TRUE) {
       
@@ -238,7 +237,7 @@ processCounts <- function(y,
       missingGenes <- setdiff(geneId, colnames(countsTSub))
       warning(paste0("The following genes are missing from the input: ", 
                      paste0(missingGenes, collapse = ", "),
-                     ". Missing genes will have their counts set to zero though the model's accuracy will be reduced; we recommend also running the interrogateMissingness() function."))
+                     ". Missing genes will have their counts set to zero and predictions will be made, though the model's accuracy will be reduced; we recommend also running the interrogateMissingness() function."))
       
       # Fill missing gene columns with zero values
       
@@ -285,13 +284,13 @@ processCounts <- function(y,
   if(ncol(y) == 1 & geneIds == "HGNC") {
     
     # Replace hgnc with ensembl
-    y <- y |>
-      as.data.frame() |>
-      rownames_to_column(var = "hgnc_symbol") |>
-      left_join(modelGeneId, by = "hgnc_symbol") |>
+    y <- as.data.frame(y) 
+    y$hgnc_symbol <- rownames(y)
+    y$hgnc_symbol <- as.character(y$hgnc_symbol)
+    y <- left_join(y, modelGeneId, by = "hgnc_symbol") |>
       dplyr::filter(!is.na(ENSEMBL)) |>
       column_to_rownames(var = "ENSEMBL") |>
-      dplyr::select(-c(hgnc_symbol, entrezgene_id))
+      dplyr::select(-c(hgnc_symbol, entrezgene_id, betaCoef))
     
     if (identical(rownames(modelMeanGenesIdentifiHR), rownames(modelSDGenesIdentifiHR)) == TRUE) {
       
@@ -325,7 +324,7 @@ processCounts <- function(y,
       missingGenes <- setdiff(geneId, rownames(y))
       warning(paste0("The following genes are missing from the input: ", 
                      paste0(missingGenes, collapse = ", "),
-                     ". Missing genes will have their counts set to zero though the model's accuracy will be reduced; we recommend also running the interrogateMissingness() function."))
+                     ". Missing genes will have their counts set to zero and predictions will be made, though the model's accuracy will be reduced; we recommend also running the interrogateMissingness() function."))
       
       if (length(missingGenes) > 0) {
         # Create a data frame with missing rows filled with zeros
@@ -379,13 +378,13 @@ processCounts <- function(y,
   if(ncol(y) > 1 & geneIds == "ENTREZ") {
     
     # Replace entrez with ensembl
-    y <- y |>
-      as.data.frame() |>
-      rownames_to_column(var = "entrezgene_id") |>
-      left_join(modelGeneId, by = "entrezgene_id") |>
+    y <- as.data.frame(y) 
+    y$entrezgene_id <- rownames(y)
+    y$entrezgene_id <- as.numeric(y$entrezgene_id)
+    y <- left_join(y, modelGeneId, by = "entrezgene_id") |>
       dplyr::filter(!is.na(ENSEMBL)) |>
       column_to_rownames(var = "ENSEMBL") |>
-      dplyr::select(-c(hgnc_symbol, entrezgene_id))
+      dplyr::select(-c(hgnc_symbol, entrezgene_id, betaCoef))
     
     if (identical(rownames(modelMeanGenesIdentifiHR), rownames(modelSDGenesIdentifiHR)) == TRUE) {
       
@@ -417,7 +416,7 @@ processCounts <- function(y,
       missingGenes <- setdiff(geneId, colnames(countsTSub))
       warning(paste0("The following genes are missing from the input: ", 
                      paste0(missingGenes, collapse = ", "),
-                     ". Missing genes will have their counts set to zero though the model's accuracy will be reduced; we recommend also running the interrogateMissingness() function."))
+                     ". Missing genes will have their counts set to zero and predictions will be made, though the model's accuracy will be reduced; we recommend also running the interrogateMissingness() function."))
       
       # Fill missing gene columns with zero values
       
@@ -461,16 +460,16 @@ processCounts <- function(y,
     
   }
   
-  if(ncol(y) == 1 & geneIds == "HGNC") {
+  if(ncol(y) == 1 & geneIds == "ENTREZ") {
     
     # Replace entrez with ensembl
-    y <- y |>
-      as.data.frame() |>
-      rownames_to_column(var = "entrezgene_id") |>
-      left_join(modelGeneId, by = "entrezgene_id") |>
+    y <- as.data.frame(y) 
+    y$entrezgene_id <- rownames(y)
+    y$entrezgene_id <- as.numeric(y$entrezgene_id)
+    y <- left_join(y, modelGeneId, by = "entrezgene_id") |>
       dplyr::filter(!is.na(ENSEMBL)) |>
       column_to_rownames(var = "ENSEMBL") |>
-      dplyr::select(-c(hgnc_symbol, entrezgene_id))
+      dplyr::select(-c(hgnc_symbol, entrezgene_id, betaCoef))
     
     if (identical(rownames(modelMeanGenesIdentifiHR), rownames(modelSDGenesIdentifiHR)) == TRUE) {
       
@@ -504,7 +503,7 @@ processCounts <- function(y,
       missingGenes <- setdiff(geneId, rownames(y))
       warning(paste0("The following genes are missing from the input: ", 
                      paste0(missingGenes, collapse = ", "),
-                     ". Missing genes will have their counts set to zero though the model's accuracy will be reduced; we recommend also running the interrogateMissingness() function."))
+                     ". Missing genes will have their counts set to zero and predictions will be made, though the model's accuracy will be reduced; we recommend also running the interrogateMissingness() function."))
       
       if (length(missingGenes) > 0) {
         # Create a data frame with missing rows filled with zeros
