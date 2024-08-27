@@ -24,7 +24,7 @@ predictHr <- function(y) {
   
   bestLambda <- modelIdentifiHR$lambda[99]
   
-  print("Predicting HR status using transformed and scaled gene expression counts.")
+  message("Predicting HR status using transformed and scaled gene expression counts.")
   # Make predictions using the trained model
   predictionHr <- predict(modelIdentifiHR,
                           newx = t(y),
