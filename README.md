@@ -24,3 +24,6 @@ processedCounts <- processCounts(y = rawCounts, geneIds = "ENSEMBL")
 predictions <- predictHr(processedCounts)
 ```
 Note: IdentifiHR uses the expression of 2604 genes for normalisation, and further, uses only 209 of these genes when predicting HR status in HGSC. All genes are needed to ensure optimal model accuracy, however, if a sample is "missing" some of the required genes, "processCounts()" will warn users and we recommended that the missing genes are investigated, to determine their use and contribution to IdentifiHR. The package includes functions to allow this missingness to be investigated, including "interrogateMissingness()" and "plotMissingness()".
+
+## Package overview
+![identifiHRPackageOverview](https://github.com/user-attachments/assets/4b8daf79-e6de-413d-a930-de0055622bfc)
