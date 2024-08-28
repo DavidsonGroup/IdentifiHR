@@ -6,7 +6,7 @@
 #' @format A data frame with 2604 rows and 3 columns:
 #' \describe{
 #'   \item{ENSEMBL}{A character vector of ensembl identifiers}
-#'   \item{betaCoeff}{A numeric vector of weighted genes in the trained IdentifiHR model}
+#'   \item{betaCoef}{A numeric vector of weighted genes in the trained IdentifiHR model}
 #'   \item{hgnc_symbol}{A character vector of hgnc symbols}
 #'   \item{entrezgene_id}{A numeric vector of entrez identifiers}
 
