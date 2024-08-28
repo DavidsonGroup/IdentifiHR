@@ -7,11 +7,19 @@ Please see the [wiki](https://github.com/DavidsonGroup/IdentifiHR/wiki) for inst
 
 For more information about model training and testing, please read our [preprint](https://www.biorxiv.org/content/10.1101/2024.08.15.608185v1).
 
-## Installation 
+## Installation: 
 
-To install the package, use the following script in R:
+To install the package, please use the following code in R:
 
 ```
 # install.packages("devtools")
 devtools::install_github("DavidsonGroup/IdentifiHR")
+```
+## How to predict HR status in HGSC quickly:
+
+IdentifiHR can predict HR status in a single HGSC sample or across many samples. It requires only a matrix or data frame of raw gene expression counts, collected through bulk or pseudobulked single-cell RNA sequencing, with samples given as columns and genes given by rows (in rownames). To use the trained IdentifiHR model, counts must first be transformed and scaled by "processcounts()", after which "predictHr()" can be used to predict the discrete HR status, being HR deficient ("HRD") or proficient ("HRP"), in addition to the probability that a sample is HRD. For basic use, please use the following code in R:
+
+```
+processedCounts <- processCounts(y = rawCounts, geneIds = "ENSEMBL")
+predictions <- predictHr(processedCounts)
 ```
