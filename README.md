@@ -3,7 +3,7 @@
 IdentifiHR is a predictive machine learning model of homologous recombination (HR) status in high-grade serous ovarian carcinoma (HGSC) that uses only gene expression.
 
 
-Please see the [wiki](https://github.com/DavidsonGroup/IdentifiHR/wiki) for installation and usage documentation, in addititon to worked examples.
+Please see the [wiki](https://github.com/DavidsonGroup/IdentifiHR/wiki) for installation and detailled usage documentation, in addititon to worked examples.
 
 For more information about model training and testing, please read our [preprint](https://www.biorxiv.org/content/10.1101/2024.08.15.608185v1).
 
@@ -23,3 +23,4 @@ IdentifiHR can predict HR status in a single HGSC sample or across many samples.
 processedCounts <- processCounts(y = rawCounts, geneIds = "ENSEMBL")
 predictions <- predictHr(processedCounts)
 ```
+Note: IdentifiHR uses the expression of 2604 genes for normalisation, and further, uses only 209 of these genes when predicting HR status in HGSC. All genes are needed to ensure optimal model accuracy, however, if a sample is "missing" some of the required genes, "processCounts()" will warn users and we recommended that the missing genes are investigated, to determine their use and contribution to IdentifiHR. The package includes functions to allow this missingness to be investigated, including "interrogateMissingness()" and "plotMissingness()".
