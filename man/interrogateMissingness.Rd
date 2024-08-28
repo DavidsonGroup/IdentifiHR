@@ -18,7 +18,7 @@ A data frame containing the following columns:
   \item hgnc_symbol - A character vector of hgnc symbols for genes needed in the model.
   \item entrezgene_id - A numeric vector of entrez identifiers for genes needed in the model.
   \item betaCoef - A numeric vector of beta coefficients for genes that are weighted towards IdentifiHR predictions. NAs indicate that a gene is only used in normalisation.
-  \item inputStatus - A character vector indicating if a gene was "present" in the input data. NAs indicate that a gene was missing.
+  \item inputStatus - A character vector indicating if a gene was "present"  or "missing in the input data. 
   \item normWeightedGene - A character vector indicating if a gene contributes to only normalisation, being "normGene", or contributes to both normalisation and model predictions, being "normWeightedGene".
 }
 }

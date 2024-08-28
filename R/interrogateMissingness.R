@@ -10,7 +10,7 @@
 #'   \item hgnc_symbol - A character vector of hgnc symbols for genes needed in the model.
 #'   \item entrezgene_id - A numeric vector of entrez identifiers for genes needed in the model.
 #'   \item betaCoef - A numeric vector of beta coefficients for genes that are weighted towards IdentifiHR predictions. NAs indicate that a gene is only used in normalisation.
-#'   \item inputStatus - A character vector indicating if a gene was "present" in the input data. NAs indicate that a gene was missing.
+#'   \item inputStatus - A character vector indicating if a gene was "present"  or "missing in the input data. 
 #'   \item normWeightedGene - A character vector indicating if a gene contributes to only normalisation, being "normGene", or contributes to both normalisation and model predictions, being "normWeightedGene".
 #' }
 #' @importFrom dplyr left_join
@@ -42,6 +42,8 @@ interrogateMissingness <- function(y,
       dplyr::select(ENSEMBL, hgnc_symbol, entrezgene_id, betaCoef, inputStatus)
     joinGenes$normWeightedGene <- dplyr::case_when(!is.na(joinGenes$betaCoef) ~ "normWeightedGene",
                                             is.na(joinGenes$betaCoef) ~ "normGene")
+    joinGenes$inputStatus <- dplyr::case_when(!is.na(joinGenes$inputStatus) ~ "present",
+                                              is.na(joinGenes$inputStatus) ~ "missing")
     missingNormGenes <- joinGenes |> 
       dplyr::filter(normWeightedGene == "normGene") |>
       dplyr::filter(is.na(inputStatus))
@@ -78,6 +80,8 @@ interrogateMissingness <- function(y,
       dplyr::select(ENSEMBL, hgnc_symbol, entrezgene_id, betaCoef, inputStatus)
     joinGenes$normWeightedGene <- dplyr::case_when(!is.na(joinGenes$betaCoef) ~ "normWeightedGene",
                                                    is.na(joinGenes$betaCoef) ~ "normGene")
+    joinGenes$inputStatus <- dplyr::case_when(!is.na(joinGenes$inputStatus) ~ "present",
+                                              is.na(joinGenes$inputStatus) ~ "missing")
     missingNormGenes <- joinGenes |> 
       dplyr::filter(normWeightedGene == "normGene") |>
       dplyr::filter(is.na(inputStatus))
@@ -109,11 +113,13 @@ interrogateMissingness <- function(y,
     y$inputStatus <- "present"
     
     # Join with modelGeneId, and select only columns that are needed to interrogate missingness
-    joinGenes <- dpylr::left_join(modelGeneId, y, by = "entrezgene_id") |>
+    joinGenes <- dplyr::left_join(modelGeneId, y, by = "entrezgene_id") |>
       dplyr::filter(!is.na(ENSEMBL)) |>
       dplyr::select(ENSEMBL, hgnc_symbol, entrezgene_id, betaCoef, inputStatus)
     joinGenes$normWeightedGene <- dplyr::case_when(!is.na(joinGenes$betaCoef) ~ "normWeightedGene",
                                                    is.na(joinGenes$betaCoef) ~ "normGene")
+    joinGenes$inputStatus <- dplyr::case_when(!is.na(joinGenes$inputStatus) ~ "present",
+                                              is.na(joinGenes$inputStatus) ~ "missing")
     missingNormGenes <- joinGenes |> 
       dplyr::filter(normWeightedGene == "normGene") |>
       dplyr::filter(is.na(inputStatus))

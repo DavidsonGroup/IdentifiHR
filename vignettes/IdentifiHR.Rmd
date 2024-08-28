@@ -1,0 +1,24 @@
+---
+title: "IdentifiHR"
+author: 
+- name: Ashley L Weir
+  affiliation: Bioinformatics Division, The Walter and Eliza Hall Institute
+  date: "`r Sys.Date()`"
+package: IdentifiHR
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{IdentifiHR}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(IdentifiHR)
+```
