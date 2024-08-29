@@ -105,5 +105,5 @@ The Cancer Genome Atlas (TCGA) cohort of n = 361 HGSCs was used to train and tes
 The following R code will support this visualisation:
 
 ```{r}
-plotProb(predictions)
+#plotProb(predictions)
 ```
