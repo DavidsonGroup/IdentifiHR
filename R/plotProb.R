@@ -12,7 +12,7 @@
 #'
 #' @author Ashley L Weir, \email{weir.a@@wehi.edu.au}
 #' @examples
-#' #See GitHub wiki
+#' plotProb(predictions)
 
 plotProb <- function(y) {
   
