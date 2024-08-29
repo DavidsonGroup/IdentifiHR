@@ -1,7 +1,5 @@
-citHeader("To cite IdentifiHR in publications, please use:")
-
-citEntry(
-  entry = "article",
+bibentry(
+  bibtype  = "Article",
   title    = "IdentifiHR: predicting homologous recombination deficiency in high-grade serous ovarian carcinoma using gene expression",
   author = c(person("Ashley L.", "Weir"),
   		 		   person("Samuel C.", "Lee"),
