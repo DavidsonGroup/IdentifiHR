@@ -4,6 +4,10 @@
 #'
 #' @param y A data frame outputted by the "predictHr()" function, including columns "Sample", "hrPrediction" and "predictionProbability".
 #' @return A plot of the input cohort and the TCGA test cohort, against the probability of each sample being HRD.
+#' @importFrom graphics plot
+#' @importFrom graphics points
+#' @importFrom graphics abline
+#' @importFrom graphics legend
 #' @export
 #'
 #' @author Ashley L Weir, \email{weir.a@@wehi.edu.au}

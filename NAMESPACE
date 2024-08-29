@@ -2,6 +2,7 @@
 
 export(interrogateMissingness)
 export(plotMissingness)
+export(plotProb)
 export(predictHr)
 export(processCounts)
 import(glmnet)
