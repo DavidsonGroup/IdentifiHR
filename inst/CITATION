@@ -1,0 +1,11 @@
+bibentry(
+  bibtype  = "Article",
+  title    = "IdentifiHR: predicting homologous recombination deficiency in high-grade serous ovarian carcinoma using gene expression",
+  author = c(person("Ashley L.", "Weir"),
+  		 		   person("Samuel C.", "Lee"),
+  		 		   person("Mengbo", "Li"),
+  		 		   person("Chin Wee", "Tan"),
+  		 		   person("Susan J.", "Ramus"),
+  		 		   person("Nadia M.", "Davidson")),
+  doi      = "https://doi.org/10.1101/2024.08.15.608185"
+)
