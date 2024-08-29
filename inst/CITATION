@@ -7,5 +7,7 @@ bibentry(
   		 		   person("Chin Wee", "Tan"),
   		 		   person("Susan J.", "Ramus"),
   		 		   person("Nadia M.", "Davidson")),
+  journal = "bioRxiv",
+  year = "2024",
   doi      = "https://doi.org/10.1101/2024.08.15.608185"
 )
