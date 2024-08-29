@@ -16,7 +16,7 @@ A plot of the input cohort and the TCGA test cohort, against the probability of 
 The "plotProb()" function allows you to visualise the probability of the input sample/s being "HRD", and to compare this against the probability distribution of the TCGA HGSC testing cohort analysed in our manuscript.
 }
 \examples{
-#See GitHub wiki
+plotProb(predictions)
 }
 \author{
 Ashley L Weir, \email{weir.a@wehi.edu.au}
