@@ -4,6 +4,8 @@
 #'
 #' @param y A data frame of all genes required by IdentifiHR, as outputted by the "interrogateMissingness()" function.
 #' @return A plot of the beta coefficients of the genes that contribute to prediction in IdentifiHR, coloured by whether they were "missing" or "present" in the input data.
+#' @importFrom dplyr filter
+#' @importFrom dplyr arrange
 #' @export
 #'
 #' @author Ashley L Weir, \email{weir.a@@wehi.edu.au}
@@ -15,7 +17,7 @@ plotMissingness <- function(y) {
   # Order genes by their beta coefficient
   orderY <- y |>
     dplyr::filter(!is.na(betaCoef)) |>
-    arrange(betaCoef)
+    dplyr::arrange(betaCoef)
   
   # Count how many genes used for normalisation and weighting were present in the input
   presentNWGene <- length(orderY$inputStatus[orderY$inputStatus == "present"])
