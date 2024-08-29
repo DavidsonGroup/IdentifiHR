@@ -12,6 +12,9 @@
 #'
 #' @author Ashley L Weir, \email{weir.a@@wehi.edu.au}
 #' @examples
+#' data(rawCounts)
+#' processedCounts <- processCounts(y = rawCounts, geneIds = "ENSEMBL")
+#' predictions <- predictHr(processedCounts)
 #' plotProb(predictions)
 
 plotProb <- function(y) {

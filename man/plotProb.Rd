@@ -16,6 +16,9 @@ A plot of the input cohort and the TCGA test cohort, against the probability of 
 The "plotProb()" function allows you to visualise the probability of the input sample/s being "HRD", and to compare this against the probability distribution of the TCGA HGSC testing cohort analysed in our manuscript.
 }
 \examples{
+data(rawCounts)
+processedCounts <- processCounts(y = rawCounts, geneIds = "ENSEMBL")
+predictions <- predictHr(processedCounts)
 plotProb(predictions)
 }
 \author{
