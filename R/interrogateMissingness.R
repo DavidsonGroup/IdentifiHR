@@ -27,7 +27,7 @@
 
 interrogateMissingness <- function(y,
                                    geneIds) {
-
+  
   if (geneIds == "ENSEMBL") {
     
     # Make input a data frame
@@ -46,6 +46,13 @@ interrogateMissingness <- function(y,
                                             is.na(joinGenes$betaCoef) ~ "normGene")
     joinGenes$inputStatus <- dplyr::case_when(!is.na(joinGenes$inputStatus) ~ "present",
                                               is.na(joinGenes$inputStatus) ~ "missing")
+    
+    if(all(joinGenes$inputStatus == "present")) {
+      
+      stop("None of the required genes are missing from the input.")
+      
+    }
+    
     missingNormGenes <- joinGenes |> 
       dplyr::filter(normWeightedGene == "normGene") |>
       dplyr::filter(is.na(inputStatus))
@@ -84,6 +91,13 @@ interrogateMissingness <- function(y,
                                                    is.na(joinGenes$betaCoef) ~ "normGene")
     joinGenes$inputStatus <- dplyr::case_when(!is.na(joinGenes$inputStatus) ~ "present",
                                               is.na(joinGenes$inputStatus) ~ "missing")
+    
+    if(all(joinGenes$inputStatus == "present")) {
+      
+      stop("None of the required genes are missing from the input.")
+      
+    }
+    
     missingNormGenes <- joinGenes |> 
       dplyr::filter(normWeightedGene == "normGene") |>
       dplyr::filter(is.na(inputStatus))
@@ -122,6 +136,13 @@ interrogateMissingness <- function(y,
                                                    is.na(joinGenes$betaCoef) ~ "normGene")
     joinGenes$inputStatus <- dplyr::case_when(!is.na(joinGenes$inputStatus) ~ "present",
                                               is.na(joinGenes$inputStatus) ~ "missing")
+    
+    if(all(joinGenes$inputStatus == "present")) {
+      
+      stop("None of the required genes are missing from the input.")
+      
+    }
+    
     missingNormGenes <- joinGenes |> 
       dplyr::filter(normWeightedGene == "normGene") |>
       dplyr::filter(is.na(inputStatus))
