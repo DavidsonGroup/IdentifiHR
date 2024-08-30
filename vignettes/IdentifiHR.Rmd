@@ -33,7 +33,7 @@ To install and load the IdentifiHR package, please use the following code in R:
 
 ```{r setup, message = FALSE}
 if(!require(devtools)) install.packages("devtools")
-devtools::install_github("DavidsonGroup/IdentifiHR")
+devtools::install_github("DavidsonGroup/IdentifiHR", build_vignettes = TRUE)
 library(IdentifiHR)
 ```
 
