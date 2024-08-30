@@ -14,7 +14,7 @@ interrogateMissingness(y, geneIds)
 \value{
 A data frame containing the following columns:
 \itemize{
-  \item ENSEMBL - A character vector of ensembl identifiers for genes needed in the model.
+  \item ensembl_id - A character vector of ensembl identifiers for genes needed in the model.
   \item hgnc_symbol - A character vector of hgnc symbols for genes needed in the model.
   \item entrezgene_id - A numeric vector of entrez identifiers for genes needed in the model.
   \item betaCoef - A numeric vector of beta coefficients for genes that are weighted towards IdentifiHR predictions. NAs indicate that a gene is only used in normalisation.
@@ -26,7 +26,9 @@ A data frame containing the following columns:
 The "interrogateMissingness()" function allows you to examine which genes, if any, required for the IdentifiHR model are missing in your dataset. There are 2604 genes required for normalising library size differences and 209 gene required to predict HR status by IdentifiHR.
 }
 \examples{
-#See GitHub wiki
+data(rawCounts)
+missingGenes <- interrogateMissingness(y = rawCounts, geneIds = "ENSEMBL")
+head(missingGenes)
 }
 \author{
 Ashley L Weir, \email{weir.a@wehi.edu.au}

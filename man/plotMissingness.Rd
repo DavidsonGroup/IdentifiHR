@@ -16,7 +16,9 @@ A plot of the beta coefficients of the genes that contribute to prediction in Id
 The "plotMissingness()" function allows you to visualise which weighted genes, if any, required for the IdentifiHR model are missing in your dataset. There are 209 gene required to predict HR status by IdentifiHR, and if any are missing, the model's accuracy will be reduced.
 }
 \examples{
-#See GitHub wiki
+data(rawCounts)
+missingGenes <- interrogateMissingness(y = rawCounts, geneIds = "ENSEMBL")
+plotMissingness(missingGenes)
 }
 \author{
 Ashley L Weir, \email{weir.a@wehi.edu.au}

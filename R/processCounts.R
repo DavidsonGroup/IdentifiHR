@@ -12,7 +12,8 @@
 #'
 #' @author Ashley L Weir, \email{weir.a@@wehi.edu.au}
 #' @examples
-#' #See GitHub wiki
+#' data(rawCounts)
+#' processedCounts <- processCounts(y = rawCounts, geneIds = "ENSEMBL")
 
 processCounts <- function(y,
                           geneIds) {
@@ -40,7 +41,7 @@ processCounts <- function(y,
     if (identical(rownames(modelMeanGenesIdentifiHR), rownames(modelSDGenesIdentifiHR)) == TRUE) {
       
       # Extract vector of ensembl identifiers required and associated means and standard deviations
-      geneId <- modelGeneId$ENSEMBL
+      geneId <- modelGeneId$ensembl_id
       meanGene <- modelMeanGenesIdentifiHR$mean
       sdGene <- modelSDGenesIdentifiHR$sd
       
@@ -116,7 +117,7 @@ processCounts <- function(y,
     if (identical(rownames(modelMeanGenesIdentifiHR), rownames(modelSDGenesIdentifiHR)) == TRUE) {
       
       # Extract vector of ensembl identifiers required and associated means and standard deviations
-      geneId <- modelGeneId$ENSEMBL
+      geneId <- modelGeneId$ensembl_id
       meanGene <- modelMeanGenesIdentifiHR$mean
       sdGene <- modelSDGenesIdentifiHR$sd
       
@@ -125,14 +126,14 @@ processCounts <- function(y,
     # Get sample identifier
     colnameSamp <- colnames(y)
     
-    # Add additional ENSEMBL column to avoid R converting input into a vector
-    y$ENSEMBL <- gsub("\\..*","", rownames(y))
+    # Add additional ensembl_id column to avoid R converting input into a vector
+    y$ensembl_id <- gsub("\\..*","", rownames(y))
     
     # Strip any potential ensembl version numbers
     rownames(y) <- gsub("\\..*","", rownames(y))
     
     # Subset to differentially expressed genes identified in model training (using ensembl IDs)
-    y <- y[y$ENSEMBL %in% geneId, ]
+    y <- y[y$ensembl_id %in% geneId, ]
     
     message("Subsetting to only model genes.")
     
@@ -171,7 +172,7 @@ processCounts <- function(y,
     
     if (identical(rownames(modelMeanGenesIdentifiHR), rownameGeneIdx) == TRUE) {
       
-      completeCounts <- completeCounts[ , colnames(completeCounts) != "ENSEMBL"]
+      completeCounts <- completeCounts[ , colnames(completeCounts) != "ensembl_id"]
       
       # Transform to log2 counts-per-million
       countsCpm <- edgeR::cpm(completeCounts, log = TRUE) # Rows give genes, columns give samples
@@ -203,14 +204,14 @@ processCounts <- function(y,
     y$hgnc_symbol <- rownames(y)
     y$hgnc_symbol <- as.character(y$hgnc_symbol)
     y <- left_join(y, modelGeneId, by = "hgnc_symbol") |>
-      dplyr::filter(!is.na(ENSEMBL)) |>
-      column_to_rownames(var = "ENSEMBL") |>
+      dplyr::filter(!is.na(ensembl_id)) |>
+      column_to_rownames(var = "ensembl_id") |>
       dplyr::select(-c(hgnc_symbol, entrezgene_id, betaCoef))
     
     if (identical(rownames(modelMeanGenesIdentifiHR), rownames(modelSDGenesIdentifiHR)) == TRUE) {
       
       # Extract vector of ensembl identifiers required and associated means and standard deviations
-      geneId <- modelGeneId$ENSEMBL
+      geneId <- modelGeneId$ensembl_id
       meanGene <- modelMeanGenesIdentifiHR$mean
       sdGene <- modelSDGenesIdentifiHR$sd
       
@@ -288,14 +289,14 @@ processCounts <- function(y,
     y$hgnc_symbol <- rownames(y)
     y$hgnc_symbol <- as.character(y$hgnc_symbol)
     y <- left_join(y, modelGeneId, by = "hgnc_symbol") |>
-      dplyr::filter(!is.na(ENSEMBL)) |>
-      column_to_rownames(var = "ENSEMBL") |>
+      dplyr::filter(!is.na(ensembl_id)) |>
+      column_to_rownames(var = "ensembl_id") |>
       dplyr::select(-c(hgnc_symbol, entrezgene_id, betaCoef))
     
     if (identical(rownames(modelMeanGenesIdentifiHR), rownames(modelSDGenesIdentifiHR)) == TRUE) {
       
       # Extract vector of ensembl identifiers required and associated means and standard deviations
-      geneId <- modelGeneId$ENSEMBL
+      geneId <- modelGeneId$ensembl_id
       meanGene <- modelMeanGenesIdentifiHR$mean
       sdGene <- modelSDGenesIdentifiHR$sd
       
@@ -304,14 +305,14 @@ processCounts <- function(y,
     # Get sample identifier
     colnameSamp <- colnames(y)
     
-    # Add additional ENSEMBL column to avoid R converting input into a vector
-    y$ENSEMBL <- gsub("\\..*","", rownames(y))
+    # Add additional ensembl_id column to avoid R converting input into a vector
+    y$ensembl_id <- gsub("\\..*","", rownames(y))
     
     # Strip any potential ensembl version numbers
     rownames(y) <- gsub("\\..*","", rownames(y))
     
     # Subset to differentially expressed genes identified in model training (using ensembl IDs)
-    y <- y[y$ENSEMBL %in% geneId, ]
+    y <- y[y$ensembl_id %in% geneId, ]
     
     message("Subsetting to only model genes.")
     
@@ -350,7 +351,7 @@ processCounts <- function(y,
     
     if (identical(rownames(modelMeanGenesIdentifiHR), rownameGeneIdx) == TRUE) {
       
-      completeCounts <- completeCounts[ , colnames(completeCounts) != "ENSEMBL"]
+      completeCounts <- completeCounts[ , colnames(completeCounts) != "ensembl_id"]
       
       # Transform to log2 counts-per-million
       countsCpm <- edgeR::cpm(completeCounts, log = TRUE) # Rows give genes, columns give samples
@@ -382,14 +383,14 @@ processCounts <- function(y,
     y$entrezgene_id <- rownames(y)
     y$entrezgene_id <- as.numeric(y$entrezgene_id)
     y <- left_join(y, modelGeneId, by = "entrezgene_id") |>
-      dplyr::filter(!is.na(ENSEMBL)) |>
-      column_to_rownames(var = "ENSEMBL") |>
+      dplyr::filter(!is.na(ensembl_id)) |>
+      column_to_rownames(var = "ensembl_id") |>
       dplyr::select(-c(hgnc_symbol, entrezgene_id, betaCoef))
     
     if (identical(rownames(modelMeanGenesIdentifiHR), rownames(modelSDGenesIdentifiHR)) == TRUE) {
       
       # Extract vector of ensembl identifiers required and associated means and standard deviations
-      geneId <- modelGeneId$ENSEMBL
+      geneId <- modelGeneId$ensembl_id
       meanGene <- modelMeanGenesIdentifiHR$mean
       sdGene <- modelSDGenesIdentifiHR$sd
       
@@ -467,14 +468,14 @@ processCounts <- function(y,
     y$entrezgene_id <- rownames(y)
     y$entrezgene_id <- as.numeric(y$entrezgene_id)
     y <- left_join(y, modelGeneId, by = "entrezgene_id") |>
-      dplyr::filter(!is.na(ENSEMBL)) |>
-      column_to_rownames(var = "ENSEMBL") |>
+      dplyr::filter(!is.na(ensembl_id)) |>
+      column_to_rownames(var = "ensembl_id") |>
       dplyr::select(-c(hgnc_symbol, entrezgene_id, betaCoef))
     
     if (identical(rownames(modelMeanGenesIdentifiHR), rownames(modelSDGenesIdentifiHR)) == TRUE) {
       
       # Extract vector of ensembl identifiers required and associated means and standard deviations
-      geneId <- modelGeneId$ENSEMBL
+      geneId <- modelGeneId$ensembl_id
       meanGene <- modelMeanGenesIdentifiHR$mean
       sdGene <- modelSDGenesIdentifiHR$sd
       
@@ -483,14 +484,14 @@ processCounts <- function(y,
     # Get sample identifier
     colnameSamp <- colnames(y)
     
-    # Add additional ENSEMBL column to avoid R converting input into a vector
-    y$ENSEMBL <- gsub("\\..*","", rownames(y))
+    # Add additional ensembl_id column to avoid R converting input into a vector
+    y$ensembl_id <- gsub("\\..*","", rownames(y))
     
     # Strip any potential ensembl version numbers
     rownames(y) <- gsub("\\..*","", rownames(y))
     
     # Subset to differentially expressed genes identified in model training (using ensembl IDs)
-    y <- y[y$ENSEMBL %in% geneId, ]
+    y <- y[y$ensembl_id %in% geneId, ]
     
     message("Subsetting to only model genes.")
     
@@ -529,7 +530,7 @@ processCounts <- function(y,
     
     if (identical(rownames(modelMeanGenesIdentifiHR), rownameGeneIdx) == TRUE) {
       
-      completeCounts <- completeCounts[ , colnames(completeCounts) != "ENSEMBL"]
+      completeCounts <- completeCounts[ , colnames(completeCounts) != "ensembl_id"]
       
       # Transform to log2 counts-per-million
       countsCpm <- edgeR::cpm(completeCounts, log = TRUE) # Rows give genes, columns give samples

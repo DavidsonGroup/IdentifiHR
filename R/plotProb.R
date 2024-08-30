@@ -37,4 +37,6 @@ plotProb <- function(y) {
          col = c( "tomato", "darkturquoise"),
          pch = 20)
   
-  }
+}
+
+utils::globalVariables(c("tcgaTestPred"))

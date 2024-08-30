@@ -21,7 +21,9 @@ A data frame containing the following columns:
 The "predictHr" function utilises IdentifiHR, a pre-trained penalised logistic regression model, to predict homologous recombination (HR) status in high-grade serous ovarin carcinoma (HGSC). IdentifiHR was trained to predict HR status high-grade serous ovarian carcinomas using bulk RNA sequencing data. It can be applied to pseudobulked HGSC cell samples profilled by single-cell RNA sequencing. We have not tested IdentifiHR's accuracy in non HGSC samples, such as other cancer types, though we expect accuracy of prediction would be reduced.
 }
 \examples{
-#See GitHub wiki
+data(rawCounts)
+processedCounts <- processCounts(y = rawCounts, geneIds = "ENSEMBL")
+predictions <- predictHr(processedCounts)
 }
 \author{
 Ashley L Weir, \email{weir.a@wehi.edu.au}

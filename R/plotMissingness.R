@@ -10,7 +10,9 @@
 #'
 #' @author Ashley L Weir, \email{weir.a@@wehi.edu.au}
 #' @examples
-#' #See GitHub wiki
+#' data(rawCounts)
+#' missingGenes <- interrogateMissingness(y = rawCounts, geneIds = "ENSEMBL")
+#' plotMissingness(missingGenes)
 
 plotMissingness <- function(y) {
   
@@ -35,5 +37,7 @@ plotMissingness <- function(y) {
          col = c("red", "darkgrey"), pch=20)
   
 }
-   
+
+utils::globalVariables(c("betaCoef"))
+
 

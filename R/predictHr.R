@@ -18,7 +18,9 @@
 #'
 #' @author Ashley L Weir, \email{weir.a@@wehi.edu.au}
 #' @examples
-#' #See GitHub wiki
+#' data(rawCounts)
+#' processedCounts <- processCounts(y = rawCounts, geneIds = "ENSEMBL")
+#' predictions <- predictHr(processedCounts)
 
 predictHr <- function(y) {
   
@@ -48,3 +50,4 @@ predictHr <- function(y) {
   
 }
 
+utils::globalVariables(c("modelIdentifiHR", "s1"))

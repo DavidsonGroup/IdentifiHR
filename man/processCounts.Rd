@@ -18,7 +18,8 @@ A numeric matrix of counts for model genes, that has been log2-counts-per-millio
 The "processCounts" function prepares gene expression counts for input into the IdentifiHR classifier.
 }
 \examples{
-#See GitHub wiki
+data(rawCounts)
+processedCounts <- processCounts(y = rawCounts, geneIds = "ENSEMBL")
 }
 \author{
 Ashley L Weir, \email{weir.a@wehi.edu.au}

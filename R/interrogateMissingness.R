@@ -6,7 +6,7 @@
 #' @param geneIds How are genes annotated? Specify either "ENSEMBL", "HGNC" or "ENTREZ" ("ENSEMBL" is preferred).
 #' @return A data frame containing the following columns:
 #' \itemize{
-#'   \item ENSEMBL - A character vector of ensembl identifiers for genes needed in the model.
+#'   \item ensembl_id - A character vector of ensembl identifiers for genes needed in the model.
 #'   \item hgnc_symbol - A character vector of hgnc symbols for genes needed in the model.
 #'   \item entrezgene_id - A numeric vector of entrez identifiers for genes needed in the model.
 #'   \item betaCoef - A numeric vector of beta coefficients for genes that are weighted towards IdentifiHR predictions. NAs indicate that a gene is only used in normalisation.
@@ -21,7 +21,9 @@
 #'
 #' @author Ashley L Weir, \email{weir.a@@wehi.edu.au}
 #' @examples
-#' #See GitHub wiki
+#' data(rawCounts)
+#' missingGenes <- interrogateMissingness(y = rawCounts, geneIds = "ENSEMBL")
+#' head(missingGenes)
 
 interrogateMissingness <- function(y,
                                    geneIds) {
@@ -32,14 +34,14 @@ interrogateMissingness <- function(y,
     y <- as.data.frame(y)
     
     # Create a column of ensembl identifiers for joining
-    y$ENSEMBL <- rownames(y)
+    y$ensembl_id <- rownames(y)
     
     # Make a column to note which genes were present in both the input and the model
     y$inputStatus <- "present"
     
     # Join with modelGeneId, and select only columns that are needed to interrogate missingness
-    joinGenes <- dplyr::left_join(modelGeneId, y, by = "ENSEMBL") |>
-      dplyr::select(ENSEMBL, hgnc_symbol, entrezgene_id, betaCoef, inputStatus)
+    joinGenes <- dplyr::left_join(modelGeneId, y, by = "ensembl_id") |>
+      dplyr::select(ensembl_id, hgnc_symbol, entrezgene_id, betaCoef, inputStatus)
     joinGenes$normWeightedGene <- dplyr::case_when(!is.na(joinGenes$betaCoef) ~ "normWeightedGene",
                                             is.na(joinGenes$betaCoef) ~ "normGene")
     joinGenes$inputStatus <- dplyr::case_when(!is.na(joinGenes$inputStatus) ~ "present",
@@ -48,14 +50,14 @@ interrogateMissingness <- function(y,
       dplyr::filter(normWeightedGene == "normGene") |>
       dplyr::filter(is.na(inputStatus))
     message(paste0("The following genes used in normalising library size are missing from the input: ", 
-                   paste0(missingNormGenes$ENSEMBL, collapse = ", "),
+                   paste0(missingNormGenes$ensembl_id, collapse = ", "),
                    ". Their counts will have been set to zero prior to processing and predicting HR status. The  model's accuracy may have been slightly reduced; we recommend also running the plotMissingness() function."))
     
     missingNormWeightedGenes <- joinGenes |> 
       dplyr::filter(normWeightedGene == "normWeightedGene") |>
       dplyr::filter(is.na(inputStatus))  
     message(paste0("The following genes used in normalising library size, that are also weighted for IdentifiHR predictions, are missing from the input: ", 
-                   paste0(missingNormWeightedGenes$ENSEMBL, collapse = ", "),
+                   paste0(missingNormWeightedGenes$ensembl_id, collapse = ", "),
                    ". Their counts will have been set to zero prior to processing and predicting HR status. The  model's accuracy will have been reduced; we recommend also running the plotMissingness() function."))
     
     return(joinGenes)
@@ -76,8 +78,8 @@ interrogateMissingness <- function(y,
     
     # Join with modelGeneId, and select only columns that are needed to interrogate missingness
     joinGenes <- dplyr::left_join(modelGeneId, y, by = "hgnc_symbol") |>
-      dplyr::filter(!is.na(ENSEMBL)) |>
-      dplyr::select(ENSEMBL, hgnc_symbol, entrezgene_id, betaCoef, inputStatus)
+      dplyr::filter(!is.na(ensembl_id)) |>
+      dplyr::select(ensembl_id, hgnc_symbol, entrezgene_id, betaCoef, inputStatus)
     joinGenes$normWeightedGene <- dplyr::case_when(!is.na(joinGenes$betaCoef) ~ "normWeightedGene",
                                                    is.na(joinGenes$betaCoef) ~ "normGene")
     joinGenes$inputStatus <- dplyr::case_when(!is.na(joinGenes$inputStatus) ~ "present",
@@ -86,14 +88,14 @@ interrogateMissingness <- function(y,
       dplyr::filter(normWeightedGene == "normGene") |>
       dplyr::filter(is.na(inputStatus))
     message(paste0("The following genes used in normalising library size are missing from the input: ", 
-                   paste0(missingNormGenes$ENSEMBL, collapse = ", "),
+                   paste0(missingNormGenes$ensembl_id, collapse = ", "),
                    ". Their counts will have been set to zero prior to processing and predicting HR status. The  model's accuracy may have been slightly reduced; we recommend also running the plotMissingness() function."))
     
     missingNormWeightedGenes <- joinGenes |> 
       dplyr::filter(normWeightedGene == "normWeightedGene") |>
       dplyr::filter(is.na(inputStatus))  
     message(paste0("The following genes used in normalising library size, that are also weighted for IdentifiHR predictions, are missing from the input: ", 
-                   paste0(missingNormWeightedGenes$ENSEMBL, collapse = ", "),
+                   paste0(missingNormWeightedGenes$ensembl_id, collapse = ", "),
                    ". Their counts will have been set to zero prior to processing and predicting HR status. The  model's accuracy will have been reduced; we recommend also running the plotMissingness() function."))
     
     return(joinGenes)
@@ -114,8 +116,8 @@ interrogateMissingness <- function(y,
     
     # Join with modelGeneId, and select only columns that are needed to interrogate missingness
     joinGenes <- dplyr::left_join(modelGeneId, y, by = "entrezgene_id") |>
-      dplyr::filter(!is.na(ENSEMBL)) |>
-      dplyr::select(ENSEMBL, hgnc_symbol, entrezgene_id, betaCoef, inputStatus)
+      dplyr::filter(!is.na(ensembl_id)) |>
+      dplyr::select(ensembl_id, hgnc_symbol, entrezgene_id, betaCoef, inputStatus)
     joinGenes$normWeightedGene <- dplyr::case_when(!is.na(joinGenes$betaCoef) ~ "normWeightedGene",
                                                    is.na(joinGenes$betaCoef) ~ "normGene")
     joinGenes$inputStatus <- dplyr::case_when(!is.na(joinGenes$inputStatus) ~ "present",
@@ -124,14 +126,14 @@ interrogateMissingness <- function(y,
       dplyr::filter(normWeightedGene == "normGene") |>
       dplyr::filter(is.na(inputStatus))
     message(paste0("The following genes used in normalising library size are missing from the input: ", 
-                   paste0(missingNormGenes$ENSEMBL, collapse = ", "),
+                   paste0(missingNormGenes$ensembl_id, collapse = ", "),
                    ". Their counts will have been set to zero prior to processing and predicting HR status. The  model's accuracy may have been slightly reduced; we recommend also running the plotMissingness() function."))
     
     missingNormWeightedGenes <- joinGenes |> 
       dplyr::filter(normWeightedGene == "normWeightedGene") |>
       dplyr::filter(is.na(inputStatus))  
     message(paste0("The following genes used in normalising library size, that are also weighted for IdentifiHR predictions, are missing from the input: ", 
-                   paste0(missingNormWeightedGenes$ENSEMBL, collapse = ", "),
+                   paste0(missingNormWeightedGenes$ensembl_id, collapse = ", "),
                    ". Their counts will have been set to zero prior to processing and predicting HR status. The  model's accuracy will have been reduced; we recommend also running the plotMissingness() function."))
     
     return(joinGenes)
