@@ -12,10 +12,8 @@ For more information about model training and testing, please read our [preprint
 To install the package, please use the following code in R:
 
 ```
-if (!requireNamespace("remotes", quietly = TRUE)) {
-  install.packages("remotes")
-}
-remotes::install_github("DavidsonGroup/IdentifiHR", build_vignettes = TRUE)
+library(devtools)   
+devtools::install_github("DavidsonGroup/IdentifiHR", build_vignettes = TRUE)
 library(IdentifiHR)
 ```
 ## How to predict HR status in HGSC quickly:
