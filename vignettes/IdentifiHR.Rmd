@@ -31,7 +31,7 @@ knitr::opts_chunk$set(
 
 To install and load the IdentifiHR package, please use the following code in R:
 
-```{r setup, include=FALSE}
+```{r setup, message = FALSE}
 if (!requireNamespace("remotes", quietly = TRUE)) {
   install.packages("remotes")
 }
