@@ -31,12 +31,9 @@ knitr::opts_chunk$set(
 
 To install and load the IdentifiHR package, please use the following code in R:
 
-```{r, include = FALSE}
+```{r setup}
 install.packages("devtools")
 library(devtools)
-```
-
-```{r setup}
 devtools::install_github("DavidsonGroup/IdentifiHR")
 library(IdentifiHR)
 ```
