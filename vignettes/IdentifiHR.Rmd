@@ -31,9 +31,17 @@ knitr::opts_chunk$set(
 
 To install and load the IdentifiHR package, please use the following code in R:
 
-```{r setup, message = FALSE}
-devtools::install_github("DavidsonGroup/IdentifiHR", build_vignettes = TRUE)
+```{r setup, include=FALSE}
+if (!requireNamespace("remotes", quietly = TRUE)) {
+  install.packages("remotes")
+}
+```
+
+```{r}
+
+remotes::install_github("DavidsonGroup/IdentifiHR", build_vignettes = TRUE)
 library(IdentifiHR)
+
 ```
 
 ## How to predict HR status in HGSC quickly:
