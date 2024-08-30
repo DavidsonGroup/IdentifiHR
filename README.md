@@ -28,4 +28,4 @@ Note: IdentifiHR uses the expression of 2604 genes for normalisation, and furthe
 
 ## Package overview:
 
-![identifiHRPackageOverview](https://github.com/user-attachments/assets/06f8c106-40f2-4a7a-a6c7-4311019a4c39)
+![identifiHRPackageOverview](https://github.com/user-attachments/assets/1ac74610-004a-44c1-824b-ed4af67f5994)
