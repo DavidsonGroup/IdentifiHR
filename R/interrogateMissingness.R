@@ -55,14 +55,14 @@ interrogateMissingness <- function(y,
     
     missingNormGenes <- joinGenes |> 
       dplyr::filter(normWeightedGene == "normGene") |>
-      dplyr::filter(is.na(inputStatus))
+      dplyr::filter(inputStatus == "missing")
     message(paste0("The following genes used in normalising library size are missing from the input: ", 
                    paste0(missingNormGenes$ensembl_id, collapse = ", "),
-                   ". Their counts will have been set to zero prior to processing and predicting HR status. The  model's accuracy may have been slightly reduced; we recommend also running the plotMissingness() function."))
+                   ". Their counts will have been set to zero prior to processing and predicting HR status. The model's accuracy may be slightly reduced."))
     
     missingNormWeightedGenes <- joinGenes |> 
       dplyr::filter(normWeightedGene == "normWeightedGene") |>
-      dplyr::filter(is.na(inputStatus))  
+      dplyr::filter(inputStatus == "missing")  
     message(paste0("The following genes used in normalising library size, that are also weighted for IdentifiHR predictions, are missing from the input: ", 
                    paste0(missingNormWeightedGenes$ensembl_id, collapse = ", "),
                    ". Their counts will have been set to zero prior to processing and predicting HR status. The  model's accuracy will have been reduced; we recommend also running the plotMissingness() function."))
@@ -100,14 +100,14 @@ interrogateMissingness <- function(y,
     
     missingNormGenes <- joinGenes |> 
       dplyr::filter(normWeightedGene == "normGene") |>
-      dplyr::filter(is.na(inputStatus))
+      dplyr::filter(inputStatus == "missing")
     message(paste0("The following genes used in normalising library size are missing from the input: ", 
                    paste0(missingNormGenes$ensembl_id, collapse = ", "),
-                   ". Their counts will have been set to zero prior to processing and predicting HR status. The  model's accuracy may have been slightly reduced; we recommend also running the plotMissingness() function."))
+                   ". Their counts will have been set to zero prior to processing and predicting HR status. The model's accuracy may be slightly reduced."))
     
     missingNormWeightedGenes <- joinGenes |> 
       dplyr::filter(normWeightedGene == "normWeightedGene") |>
-      dplyr::filter(is.na(inputStatus))  
+      dplyr::filter(inputStatus == "missing")  
     message(paste0("The following genes used in normalising library size, that are also weighted for IdentifiHR predictions, are missing from the input: ", 
                    paste0(missingNormWeightedGenes$ensembl_id, collapse = ", "),
                    ". Their counts will have been set to zero prior to processing and predicting HR status. The  model's accuracy will have been reduced; we recommend also running the plotMissingness() function."))
@@ -145,14 +145,14 @@ interrogateMissingness <- function(y,
     
     missingNormGenes <- joinGenes |> 
       dplyr::filter(normWeightedGene == "normGene") |>
-      dplyr::filter(is.na(inputStatus))
+      dplyr::filter(inputStatus == "missing")
     message(paste0("The following genes used in normalising library size are missing from the input: ", 
                    paste0(missingNormGenes$ensembl_id, collapse = ", "),
-                   ". Their counts will have been set to zero prior to processing and predicting HR status. The  model's accuracy may have been slightly reduced; we recommend also running the plotMissingness() function."))
+                   ". Their counts will have been set to zero prior to processing and predicting HR status. The model's accuracy may be slightly reduced."))
     
     missingNormWeightedGenes <- joinGenes |> 
       dplyr::filter(normWeightedGene == "normWeightedGene") |>
-      dplyr::filter(is.na(inputStatus))  
+      dplyr::filter(inputStatus == "missing")  
     message(paste0("The following genes used in normalising library size, that are also weighted for IdentifiHR predictions, are missing from the input: ", 
                    paste0(missingNormWeightedGenes$ensembl_id, collapse = ", "),
                    ". Their counts will have been set to zero prior to processing and predicting HR status. The  model's accuracy will have been reduced; we recommend also running the plotMissingness() function."))

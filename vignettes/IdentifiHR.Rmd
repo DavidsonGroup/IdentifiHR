@@ -20,25 +20,22 @@ Approximately half of all HGSCs have a therapeutically targetable defect in the 
 
 Our R package includes functions to process your raw count table and apply the IdentifiHR model, while also offering some plotting functions to help you to analyse your results.
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
+```{r message=FALSE, warning=FALSE, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, dpi = 72, collapse = TRUE,
+  comment = "#>")
+suppressMessages(library(IdentifiHR))
 ```
-
 ## Installing and loading IdentifiHR
 
-To install and load the IdentifiHR package, please use the following code in R:
+To install the IdentifiHR package, please use the following code in R:
 
-```{r setup, message = FALSE}
-if (!requireNamespace("remotes", quietly = TRUE)) {
-  install.packages("remotes")
-}
+```{r eval=FALSE}
+devtools::install_github("DavidsonGroup/IdentifiHR", build_vignettes = TRUE)
 ```
 
-```{r, message = FALSE}
-remotes::install_github("DavidsonGroup/IdentifiHR", build_vignettes = TRUE)
+To load the IdentifiHR package, please use the following code in R:
+
+```{r, message = FALSE, warning = FALSE}
 library(IdentifiHR)
 ```
 
@@ -51,7 +48,7 @@ IdentifiHR can predict HR status in a single HGSC sample or across many samples.
 To see what your input matrix or data frame should look like, and to test  package functions, we have included an example dataset, containing 10 HGSC samples.
 To load this example data frame of raw gene expression counts, please use the following R code:
 
-```{r, message = FALSE}
+```{r, message = FALSE, warning = FALSE}
 data(rawCounts)
 ```
 
@@ -88,7 +85,7 @@ The package includes functions to allow this missingness to be investigated, inc
 
 Any missing genes should be investigated using the following R code:
 
-```{r, message = FALSE}
+```{r, fig.width=8, fig.height=6, warning = FALSE}
 missingGenes <- interrogateMissingness(y = rawCounts, geneIds = "ENSEMBL")
 plotMissingness(missingGenes)
 ```
@@ -99,7 +96,7 @@ The output of the "processCounts()" function, being transformed and scaled gene 
 
 To predict the HR status of a HGSC sample, please use the following R code:
 
-```{r}
+```{r, warning = FALSE}
 predictions <- predictHr(processedCounts)
 ```
 
@@ -109,6 +106,6 @@ The Cancer Genome Atlas (TCGA) cohort of n = 361 HGSCs was used to train and tes
 
 The following R code will support this visualisation:
 
-```{r}
+```{r, fig.width=8, fig.height=6, warning = FALSE}
 plotProb(predictions)
 ```
