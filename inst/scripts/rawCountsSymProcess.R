@@ -10,7 +10,7 @@ rawCountsSymProcess <- function(rawCounts, modelGeneId) {
   rawCounts$ensembl_id <- rownames(rawCounts)
   
   # left_join with modelGeneId on ensembl_id
-  rawCountsEnt <- left_join(rawCounts, modelGeneId, by = "ensembl_id")
+  rawCountsSym <- left_join(rawCounts, modelGeneId, by = "ensembl_id")
   
   # remove rows where hgnc_symbol is NA
   rawCountsSym <- rawCountsSym |>
