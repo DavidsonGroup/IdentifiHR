@@ -1,4 +1,3 @@
-
 testthat::test_that("processed counts are numeric and not NA", {
   
   data("rawCounts")
