@@ -205,7 +205,6 @@ processCounts <- function(y,
     y$hgnc_symbol <- as.character(y$hgnc_symbol)
     y <- left_join(y, modelGeneId, by = "hgnc_symbol") |>
       dplyr::filter(!is.na(ensembl_id)) |>
-      dplyr::filter(!duplicated(ensembl_id)) |>
       column_to_rownames(var = "ensembl_id") |>
       dplyr::select(-c(hgnc_symbol, entrezgene_id, betaCoef))
     
@@ -291,7 +290,6 @@ processCounts <- function(y,
     y$hgnc_symbol <- as.character(y$hgnc_symbol)
     y <- left_join(y, modelGeneId, by = "hgnc_symbol") |>
       dplyr::filter(!is.na(ensembl_id)) |>
-      dplyr::filter(!duplicated(ensembl_id)) |>
       column_to_rownames(var = "ensembl_id") |>
       dplyr::select(-c(hgnc_symbol, entrezgene_id, betaCoef))
     
@@ -386,8 +384,7 @@ processCounts <- function(y,
     y$entrezgene_id <- as.numeric(y$entrezgene_id)
     y <- left_join(y, modelGeneId, by = "entrezgene_id") |>
       dplyr::filter(!is.na(ensembl_id)) |>
-      dplyr::filter(!duplicated(ensembl_id)) |>
-      column_to_rownames(var = "ensembl_id") |>
+      tibble::column_to_rownames(var = "ensembl_id") |>
       dplyr::select(-c(hgnc_symbol, entrezgene_id, betaCoef))
     
     if (identical(rownames(modelMeanGenesIdentifiHR), rownames(modelSDGenesIdentifiHR)) == TRUE) {
@@ -472,7 +469,6 @@ processCounts <- function(y,
     y$entrezgene_id <- as.numeric(y$entrezgene_id)
     y <- left_join(y, modelGeneId, by = "entrezgene_id") |>
       dplyr::filter(!is.na(ensembl_id)) |>
-      dplyr::filter(!duplicated(ensembl_id)) |>
       column_to_rownames(var = "ensembl_id") |>
       dplyr::select(-c(hgnc_symbol, entrezgene_id, betaCoef))
     

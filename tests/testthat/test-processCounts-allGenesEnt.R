@@ -3,7 +3,7 @@ testthat::test_that("processed counts contain all required genes, with entrez id
   data("rawCounts")
   data("modelGeneId")
   source(system.file("scripts", "rawCountsEntProcess.R", package = "IdentifiHR"))
-  rawCountsEnt <- rawCountsSymProcess(rawCounts, modelGeneId)
+  rawCountsEnt <- rawCountsEntProcess(rawCounts, modelGeneId)
   processedCounts <- processCounts(y = rawCountsEnt, geneIds = "ENTREZ")
   
   expect_identical(rownames(processedCounts), rownames(modelMeanGenesIdentifiHR))
