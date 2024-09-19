@@ -22,7 +22,9 @@
 #' @author Ashley L Weir, \email{weir.a@@wehi.edu.au}
 #' @examples
 #' data(rawCounts)
-#' missingGenes <- interrogateMissingness(y = rawCounts, geneIds = "ENSEMBL")
+#' # Removing a model gene gene to give an example of the interrogateMissingness() function.
+#' rawCountsMissing <- rawCounts[rownames(rawCounts) != "ENSG00000160959", ]
+#' missingGenes <- interrogateMissingness(y = rawCountsMissing, geneIds = "ENSEMBL")
 #' head(missingGenes)
 
 interrogateMissingness <- function(y,

@@ -17,7 +17,9 @@ The "plotMissingness()" function allows you to visualise which weighted genes, i
 }
 \examples{
 data(rawCounts)
-missingGenes <- interrogateMissingness(y = rawCounts, geneIds = "ENSEMBL")
+# Removing a model gene to give an example of the plotMissingness() function.
+rawCountsMissing <- rawCounts[rownames(rawCounts) != "ENSG00000160959", ]
+missingGenes <- interrogateMissingness(y = rawCountsMissing, geneIds = "ENSEMBL")
 plotMissingness(missingGenes)
 }
 \author{

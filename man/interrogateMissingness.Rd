@@ -27,7 +27,9 @@ The "interrogateMissingness()" function allows you to examine which genes, if an
 }
 \examples{
 data(rawCounts)
-missingGenes <- interrogateMissingness(y = rawCounts, geneIds = "ENSEMBL")
+# Removing a model gene gene to give an example of the interrogateMissingness() function.
+rawCountsMissing <- rawCounts[rownames(rawCounts) != "ENSG00000160959", ]
+missingGenes <- interrogateMissingness(y = rawCountsMissing, geneIds = "ENSEMBL")
 head(missingGenes)
 }
 \author{

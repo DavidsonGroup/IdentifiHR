@@ -1,9 +1,11 @@
 test_that("interrogateMissingness object is a data frame with the correct columns, with hgnc symbols as input", {
   
   data("rawCounts")
+  # Removing a model gene gene to give an example of the interrogateMissingness() function.
+  rawCountsMissing <- rawCounts[rownames(rawCounts) != "ENSG00000160959", ]
   data("modelGeneId")
   source(system.file("scripts", "rawCountsSymProcess.R", package = "IdentifiHR"))
-  rawCountsSym <- rawCountsSymProcess(rawCounts, modelGeneId)
+  rawCountsSym <- rawCountsSymProcess(rawCountsMissing, modelGeneId)
   colNamesMiss <- c("ensembl_id", "hgnc_symbol", "entrezgene_id", "betaCoef", "inputStatus",  "normWeightedGene")
   inputStatusVec <- c("present", "missing")
   missingGenes <- interrogateMissingness(y = rawCountsSym, geneIds = "HGNC")
