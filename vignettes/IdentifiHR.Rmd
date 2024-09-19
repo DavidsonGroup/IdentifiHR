@@ -77,16 +77,19 @@ processedCounts <- processCounts(y = rawCounts, geneIds = "ENSEMBL")
 
 ### Investigating missing genes in the input data
 
-All genes are needed to ensure optimal model accuracy, however, if a sample is "missing" some of the required genes, the processCounts() will produce warning messages detailing the percentage of missing genes and the ensembl identifier of the missing genes. The function will have set the counts of these missing genes to zero, and proceeded to transform and scale them, in preparation for HR status prediction. This means that regardless of missingness in the input, HR status can still be predicted for a sample. However, ee recommended that any missing genes be investigated, to determine their use and contribution to IdentifiHR. The missing genes will either only be used for normalisation or will be used for both normalisation and model predictions, though in either instance, will impact the accuracy of IdentifiHR.
+All genes are needed to ensure optimal model accuracy, however, if a sample is "missing" some of the required genes, the processCounts() will produce warning messages detailing the percentage of missing genes and the ensembl identifier of the missing genes. The function will have set the counts of these missing genes to zero, and proceeded to transform and scale them, in preparation for HR status prediction. This means that regardless of missingness in the input, HR status can still be predicted for a sample. However, we recommended that any missing genes be investigated, to determine their use and contribution to IdentifiHR. The missing genes will either only be used for normalisation or will be used for both normalisation and model predictions, though in either instance, will impact the accuracy of IdentifiHR.
 
 The package includes functions to allow this missingness to be investigated, including "interrogateMissingness()" and "plotMissingness()". The "interrogateMissingness()" function requires the input matrix or data frame of raw gene expression counts (y = rawCounts) and will produce a data frame detailing all genes required by the model and their associated beta coefficient (or weight towards prediction), in addition to whether the gene was "missing" or "present" from the input data. The "plotMissingness()" function will allow you to visualise the beta coefficients of genes weighted toward predictions, colouring those that are missing in red. 
 
 **It is up to the user to decide whether to use the model's predictions regardless of missingness, though we do advise that caution be applied to any conclusions drawn, particularly if the missing gene/s are weighted toward model prediction.**
 
+We can appreciate the output of these functions by removing a model gene (for example, ENSG00000160959) from our example counts matrix.
 Any missing genes should be investigated using the following R code:
 
 ```{r, fig.width=8, fig.height=6, warning = FALSE}
-missingGenes <- interrogateMissingness(y = rawCounts, geneIds = "ENSEMBL")
+
+rawCountsMissing <- rawCounts[rownames(rawCounts) != "ENSG00000160959", ]
+missingGenes <- interrogateMissingness(y = rawCountsMissing, geneIds = "ENSEMBL")
 plotMissingness(missingGenes)
 ```
 
