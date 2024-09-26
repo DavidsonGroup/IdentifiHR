@@ -18,9 +18,15 @@
 processCounts <- function(y,
                           geneIds) {
   
-  if (!is.matrix(y) & !is.data.frame(y)) {
+  if (!is.matrix(y) & !is.data.frame(y) & class(y) != "SummarizedExperiment") {
     
-    stop("Input is not a matrix or data frame. The input must be a numeric matrix or data frame, with genes presented in rownames and samples presented in columns.")
+    stop("Input is not a matrix, data frame or SummarisedExperiment object. The input must be or contain a numeric matrix or data frame, with genes presented in rownames and samples presented in columns.")
+    
+  }
+  
+  if (class(y) == "SummarizedExperiment") {
+    
+    y <- y@assays@data@listData[["counts"]]
     
   }
   
@@ -34,12 +40,6 @@ processCounts <- function(y,
     
     stop("Input is not numeric. The input must be a numeric matrix or data frame, with genes presented in rownames and samples presented in columns.")
     
-  }
-  
-  if (class(y) == "SummarizedExperiment") {
-    
-    y <- y@assays@data@listData[["counts"]]
-   
   }
   
   if(ncol(y) > 1 & geneIds == "ENSEMBL") {
