@@ -31,7 +31,7 @@
 interrogateMissingness <- function(y,
                                    geneIds) {
   
-  if (class(y) == "SummarizedExperiment") {
+  if (is(y, "SummarizedExperiment")) {
     
     y <- y@assays@data@listData[["counts"]]
     

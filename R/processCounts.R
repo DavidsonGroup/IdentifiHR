@@ -19,13 +19,13 @@
 processCounts <- function(y,
                           geneIds) {
   
-  if (!is.matrix(y) & !is.data.frame(y) & class(y) != "SummarizedExperiment") {
+  if (!is.matrix(y) & !is.data.frame(y) & !is(y, "SummarizedExperiment")) {
     
     stop("Input is not a matrix, data frame or SummarisedExperiment object. The input must be or contain a numeric matrix or data frame, with genes presented in rownames and samples presented in columns.")
     
   }
   
-  if (class(y) == "SummarizedExperiment") {
+  if (is(y, "SummarizedExperiment")) {
     
     y <- y@assays@data@listData[["counts"]]
     
