@@ -5,6 +5,7 @@
 #' @param y A numeric matrix or data frame of raw gene expression counts, with genes presented as rownames and samples presented in columns, or a SummarisedExperiment object where counts are recorded as an assay, with genes presented as rownames and samples presented in columns.
 #' @param geneIds How are genes annotated? Specify either "ENSEMBL", "HGNC" or "ENTREZ" ("ENSEMBL" is preferred).
 #' @return A numeric matrix of counts for model genes, that has been log2-counts-per-million transformed and z-score scaled across genes.
+#' @importFrom SummarizedExperiment SummarizedExperiment
 #' @importFrom edgeR cpm
 #' @importFrom tibble column_to_rownames
 #' @importFrom dplyr select 

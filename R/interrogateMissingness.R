@@ -13,6 +13,7 @@
 #'   \item inputStatus - A character vector indicating if a gene was "present"  or "missing in the input data. 
 #'   \item normWeightedGene - A character vector indicating if a gene contributes to only normalisation, being "normGene", or contributes to both normalisation and model predictions, being "normWeightedGene".
 #' }
+#' @importFrom SummarizedExperiment SummarizedExperiment
 #' @importFrom dplyr left_join
 #' @importFrom dplyr select
 #' @importFrom dplyr case_when
