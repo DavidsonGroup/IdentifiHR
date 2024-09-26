@@ -2,7 +2,7 @@
 #'
 #' The "processCounts" function prepares gene expression counts for input into the IdentifiHR classifier. 
 #'
-#' @param y A numeric matrix or data frame of raw gene expression counts, with genes presented as rownames and samples presented in columns.
+#' @param y A numeric matrix or data frame of raw gene expression counts, with genes presented as rownames and samples presented in columns, or a SummarisedExperiment object where counts are recorded as an assay, with genes presented as rownames and samples presented in columns.
 #' @param geneIds How are genes annotated? Specify either "ENSEMBL", "HGNC" or "ENTREZ" ("ENSEMBL" is preferred).
 #' @return A numeric matrix of counts for model genes, that has been log2-counts-per-million transformed and z-score scaled across genes.
 #' @importFrom edgeR cpm
@@ -34,6 +34,12 @@ processCounts <- function(y,
     
     stop("Input is not numeric. The input must be a numeric matrix or data frame, with genes presented in rownames and samples presented in columns.")
     
+  }
+  
+  if (class(y) == "SummarizedExperiment") {
+    
+    y <- y@assays@data@listData[["counts"]]
+   
   }
   
   if(ncol(y) > 1 & geneIds == "ENSEMBL") {

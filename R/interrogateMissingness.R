@@ -2,7 +2,7 @@
 #'
 #' The "interrogateMissingness()" function allows you to examine which genes, if any, required for the IdentifiHR model are missing in your dataset. There are 2604 genes required for normalising library size differences and 209 gene required to predict HR status by IdentifiHR. 
 #'
-#' @param y A numeric matrix or data frame of raw gene expression counts, with genes presented as rownames and samples presented in columns.
+#' @param y A numeric matrix or data frame of raw gene expression counts, with genes presented as rownames and samples presented in columns, or a SummarisedExperiment object where counts are recorded as an assay, with genes presented as rownames and samples presented in columns.
 #' @param geneIds How are genes annotated? Specify either "ENSEMBL", "HGNC" or "ENTREZ" ("ENSEMBL" is preferred).
 #' @return A data frame containing the following columns:
 #' \itemize{
@@ -29,6 +29,12 @@
 
 interrogateMissingness <- function(y,
                                    geneIds) {
+  
+  if (class(y) == "SummarizedExperiment") {
+    
+    y <- y@assays@data@listData[["counts"]]
+    
+  }
   
   if (geneIds == "ENSEMBL") {
     
