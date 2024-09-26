@@ -7,7 +7,7 @@
 processCounts(y, geneIds)
 }
 \arguments{
-\item{y}{A numeric matrix or data frame of raw gene expression counts, with genes presented as rownames and samples presented in columns.}
+\item{y}{A numeric matrix or data frame of raw gene expression counts, with genes presented as rownames and samples presented in columns, or a SummarisedExperiment object where counts are recorded as an assay, with genes presented as rownames and samples presented in columns.}
 
 \item{geneIds}{How are genes annotated? Specify either "ENSEMBL", "HGNC" or "ENTREZ" ("ENSEMBL" is preferred).}
 }
