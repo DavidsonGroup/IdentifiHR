@@ -18,7 +18,7 @@ Approximately half of all HGSCs have a therapeutically targetable defect in the 
 
 **IdentifiHR** is a predictive machine learning model of homologous recombination (HR) status in high-grade serous ovarian carcinoma (HGSC) that uses only gene expression. IdentifiHR can be run on a single sample or on a large cohort, and requires only raw gene expression counts. It provides a prediction of a sample's HR status, being HR proficient (HRP) or deficient (HRD), in addition to the probability that a given sample is HRD. 
 
-Our R package includes functions to process your raw count table and apply the IdentifiHR model, while also offering some plotting functions to help you to analyse your results.
+Our R package includes functions to process your raw counts as a matrix, data frame or SummarizedExperiment object and apply the IdentifiHR model, while also offering some plotting functions to help you to analyse your results.
 
 ```{r message=FALSE, warning=FALSE, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, dpi = 72, collapse = TRUE,
@@ -41,11 +41,11 @@ library(IdentifiHR)
 
 ## How to predict HR status in HGSC quickly:
 
-IdentifiHR can predict HR status in a single HGSC sample or across many samples. It requires only a matrix or data frame of raw gene expression counts, collected through bulk or pseudobulked single-cell RNA sequencing, with samples given as columns and genes given by rows (in rownames). To use the trained IdentifiHR model, counts must first be transformed and scaled by "processcounts()", after which "predictHr()" can be used to predict the discrete HR status, being HR deficient ("HRD") or proficient ("HRP"), in addition to the probability that a sample is HRD. 
+IdentifiHR can predict HR status in a single HGSC sample or across many samples. It requires only a matrix, data frame or SummarizedExperiment object containing raw gene expression counts, collected through bulk or pseudobulked single-cell RNA sequencing, with samples given as columns and genes given by rows (in rownames). To use the trained IdentifiHR model, counts must first be transformed and scaled by "processcounts()", after which "predictHr()" can be used to predict the discrete HR status, being HR deficient ("HRD") or proficient ("HRP"), in addition to the probability that a sample is HRD. 
 
 ### Load example data: 
 
-To see what your input matrix or data frame should look like, and to test  package functions, we have included an example dataset, containing 10 HGSC samples.
+To see what your input should look like, and to test  package functions, we have included an example dataset, containing 10 HGSC samples.
 To load this example data frame of raw gene expression counts, please use the following R code:
 
 ```{r, message = FALSE, warning = FALSE}
@@ -79,7 +79,7 @@ processedCounts <- processCounts(y = rawCounts, geneIds = "ENSEMBL")
 
 All genes are needed to ensure optimal model accuracy, however, if a sample is "missing" some of the required genes, the processCounts() will produce warning messages detailing the percentage of missing genes and the ensembl identifier of the missing genes. The function will have set the counts of these missing genes to zero, and proceeded to transform and scale them, in preparation for HR status prediction. This means that regardless of missingness in the input, HR status can still be predicted for a sample. However, we recommended that any missing genes be investigated, to determine their use and contribution to IdentifiHR. The missing genes will either only be used for normalisation or will be used for both normalisation and model predictions, though in either instance, will impact the accuracy of IdentifiHR.
 
-The package includes functions to allow this missingness to be investigated, including "interrogateMissingness()" and "plotMissingness()". The "interrogateMissingness()" function requires the input matrix or data frame of raw gene expression counts (y = rawCounts) and will produce a data frame detailing all genes required by the model and their associated beta coefficient (or weight towards prediction), in addition to whether the gene was "missing" or "present" from the input data. The "plotMissingness()" function will allow you to visualise the beta coefficients of genes weighted toward predictions, colouring those that are missing in red. 
+The package includes functions to allow this missingness to be investigated, including "interrogateMissingness()" and "plotMissingness()". The "interrogateMissingness()" function requires the input matrix, data frame or SummarizedExperiment object containing raw gene expression counts (y = rawCounts) and will produce a data frame detailing all genes required by the model and their associated beta coefficient (or weight towards prediction), in addition to whether the gene was "missing" or "present" from the input data. The "plotMissingness()" function will allow you to visualise the beta coefficients of genes weighted toward predictions, colouring those that are missing in red. 
 
 **It is up to the user to decide whether to use the model's predictions regardless of missingness, though we do advise that caution be applied to any conclusions drawn, particularly if the missing gene/s are weighted toward model prediction.**
 
