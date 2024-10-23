@@ -14,7 +14,11 @@
 #' @author Ashley L Weir, \email{weir.a@@wehi.edu.au}
 #' @examples
 #' data(rawCounts)
+#' # To process counts from a data frame or matrix:
 #' processedCounts <- processCounts(y = rawCounts, geneIds = "ENSEMBL")
+#' # To process counts from a SummarizedExperiment object:
+#' rawCountsSe <- SummarizedExperiment(assays = list(counts = rawCounts))
+#' processedCounts <- processCounts(y = rawCountsSe, geneIds = "ENSEMBL")
 
 processCounts <- function(y,
                           geneIds) {

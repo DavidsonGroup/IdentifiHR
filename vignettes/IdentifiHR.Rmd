@@ -69,10 +69,17 @@ IdentifiHR requires raw, integer counts as input (y = rawCounts), and HR status 
 
 IdentifiHR uses the expression of 2604 genes for normalisation, and further, uses only 209 of these genes when predicting HR status in HGSC.  The "processCounts()" function will first subset the input data down to just the genes required for normalisation and model predictions. These genes will then be transformed into log2 counts-per-million (cpm) values to account for differences in library size between the input data and the data used to train the model. The transformed counts are then scaled into z scores using the mean expression and standard deviation of expression for the required genes, derived from the training cohort. This is why processing must be performed using this function, as a z score calculated across the input data will not yield the same values required for model predictions. 
 
-Please use the following code as an example for **how to process raw counts:**
+Please use the following code as an example for **how to process raw counts within a data frame or matrix:**
 
 ```{r}
 processedCounts <- processCounts(y = rawCounts, geneIds = "ENSEMBL")
+```
+
+Please use the following code as an example for **how to process raw counts within a SummarizedExperiment object:**
+
+```{r}
+rawCountsSe <- SummarizedExperiment(assays = list(counts = rawCounts))
+processedCounts <- processCounts(y = rawCountsSe, geneIds = "ENSEMBL")
 ```
 
 ### Investigating missing genes in the input data
