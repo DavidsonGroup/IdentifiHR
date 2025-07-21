@@ -18,7 +18,8 @@ Imports:
     tibble,
     edgeR,
     glmnet,
-    stats
+    stats,
+    SummarizedExperiment
 RoxygenNote: 7.3.2
 Suggests: 
     knitr,
