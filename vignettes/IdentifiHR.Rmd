@@ -31,7 +31,6 @@ library(dplyr)
 library(tibble)
 library(edgeR)
 library(glmnet)
-# other necessary libraries
 ```
 ## Installing and loading IdentifiHR
 
