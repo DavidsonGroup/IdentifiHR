@@ -34,7 +34,7 @@ predictHr <- function(y) {
                           type = "class") |>
     as.data.frame() |>
     tibble::rownames_to_column(var = "Sample") |>
-    dplyr::rename(hrPrediction = s1)
+    dplyr::rename(hrPrediction = "s=0.004211567")
   
   predictedProb <- predict(modelIdentifiHR,
                            newx = t(y),
@@ -42,7 +42,7 @@ predictHr <- function(y) {
                            type = "response") |>
     as.data.frame() |>
     tibble::rownames_to_column(var = "Sample") |>
-    dplyr::rename(predictionProbability = s1)
+    dplyr::rename(predictionProbability = "s=0.004211567")
   predictedProb$predictionProbability <- (1 -  predictedProb$predictionProbability)
   predictionHrDf <- left_join(predictionHr, predictedProb, by = "Sample")
   
@@ -50,4 +50,4 @@ predictHr <- function(y) {
   
 }
 
-utils::globalVariables(c("modelIdentifiHR", "s1"))
+utils::globalVariables(c("modelIdentifiHR", "s=0.004211567"))
