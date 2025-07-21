@@ -25,6 +25,14 @@ knitr::opts_chunk$set(echo = TRUE, dpi = 72, collapse = TRUE,
   comment = "#>")
 suppressMessages(library(IdentifiHR))
 ```
+```{r setup, include=FALSE}
+library(SummarizedExperiment)
+library(dplyr)
+library(tibble)
+library(edgeR)
+library(glmnet)
+# other necessary libraries
+```
 ## Installing and loading IdentifiHR
 
 To install the IdentifiHR package, please use the following code in R:
