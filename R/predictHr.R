@@ -50,4 +50,4 @@ predictHr <- function(y) {
   
 }
 
-utils::globalVariables(c("modelIdentifiHR", "s=0.004211567"))
+utils::globalVariables(c("modelIdentifiHR"))
