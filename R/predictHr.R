@@ -33,16 +33,16 @@ predictHr <- function(y) {
                           s = bestLambda,
                           type = "class") |>
     as.data.frame() |>
-    tibble::rownames_to_column(var = "Sample") |>
-    dplyr::rename(hrPrediction = "s=0.004211567")
+    tibble::rownames_to_column(var = "Sample")
+  colnames(predictionHr)[2] <-"hrPrediction" 
   
   predictedProb <- predict(modelIdentifiHR,
                            newx = t(y),
                            s = bestLambda,
                            type = "response") |>
     as.data.frame() |>
-    tibble::rownames_to_column(var = "Sample") |>
-    dplyr::rename(predictionProbability = "s=0.004211567")
+    tibble::rownames_to_column(var = "Sample")
+  colnames(predictedProb)[2] <-"predictionProbability"
   predictedProb$predictionProbability <- (1 -  predictedProb$predictionProbability)
   predictionHrDf <- left_join(predictionHr, predictedProb, by = "Sample")
   
