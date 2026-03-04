@@ -9,6 +9,7 @@
 #' @importFrom edgeR cpm
 #' @importFrom tibble column_to_rownames
 #' @importFrom dplyr select 
+#' @importFrom methods is
 #' @export
 #'
 #' @author Ashley L Weir, \email{weir.a@@wehi.edu.au}

@@ -18,6 +18,7 @@
 #' @importFrom dplyr select
 #' @importFrom dplyr case_when
 #' @importFrom dplyr filter
+#' @importFrom methods is
 #' @export
 #'
 #' @author Ashley L Weir, \email{weir.a@@wehi.edu.au}
