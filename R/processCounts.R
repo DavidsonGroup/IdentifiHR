@@ -69,9 +69,11 @@ processCounts <- function(y,
     
     # If not all genes are present:
     if (identical(sort(rownames(y)), sort(geneId)) == FALSE) {
-      
-      message(glue("{round((length(intersect(rownames(y), geneId)) / 2604) * 100)}% of the 2604 genes required for IdentifiHR are present.")))
-      
+
+      msg_str <- glue("{pct}% of the 2604 genes required for IdentifiHR are present.",
+                      pct = round((length(intersect(rownames(y), geneId)) / 2604) * 100))
+      message(msg_str)
+
       countsTSub <- t(y)
       countsTSub <- as.data.frame(countsTSub)
       countsTSub <- countsTSub[ , intersect(colnames(countsTSub), geneId), drop = FALSE]  # Keep existing columns in order
@@ -97,9 +99,11 @@ processCounts <- function(y,
       completeCounts <- t(countsTSub)
       
     } else if (identical(sort(rownames(y)), sort(geneId)) == TRUE) { # if all genes are present
-      
-      message(glue("{round((length(intersect(rownames(y), geneId)) / 2604) * 100)}% of the 2604 genes required for IdentifiHR are present."))
-      
+
+      msg_str <- glue("{pct}% of the 2604 genes required for IdentifiHR are present.",
+                      pct = round((length(intersect(rownames(y), geneId)) / 2604) * 100))
+      message(msg_str)
+
       completeCounts <- y[geneId, ] # order genes
       
     }
@@ -151,9 +155,11 @@ processCounts <- function(y,
     
     # If not all genes are present:
     if (identical(sort(rownames(y)), sort(geneId)) == FALSE) {
-      
-      message(glue("{round((length(intersect(rownames(y), geneId)) / 2604) * 100)}% of the 2604 genes required for IdentifiHR are present.")))
-      
+
+      msg_str <- glue("{pct}% of the 2604 genes required for IdentifiHR are present.",
+                      pct = round((length(intersect(rownames(y), geneId)) / 2604) * 100))
+      message(msg_str)
+
       # Report which genes are missing in warning message
       missingGenes <- setdiff(geneId, rownames(y))
       warning(paste0("The following genes are missing from the input: ", 
@@ -174,9 +180,11 @@ processCounts <- function(y,
       rownameGeneIdx <- rownames(completeCounts)
       
     } else if (identical(sort(rownames(y)), sort(geneId)) == TRUE) { # if all genes are present
-      
-      message(glue("{round((length(intersect(rownames(y), geneId)) / 2604) * 100)}% of the 2604 genes required for IdentifiHR are present."))
-      
+
+      msg_str <- glue("{pct}% of the 2604 genes required for IdentifiHR are present.",
+                      pct = round((length(intersect(rownames(y), geneId)) / 2604) * 100))
+      message(msg_str)
+
       completeCounts <- y[geneId, ] # order genes
       rownameGeneIdx <- rownames(completeCounts)
       
@@ -239,9 +247,11 @@ processCounts <- function(y,
     
     # If not all genes are present:
     if (identical(sort(rownames(y)), sort(geneId)) == FALSE) {
-      
-      message(glue("{round((length(intersect(rownames(y), geneId)) / 2604) * 100)}% of the 2604 genes required for IdentifiHR are present.")))
-      
+
+      msg_str <- glue("{pct}% of the 2604 genes required for IdentifiHR are present.",
+                      pct = round((length(intersect(rownames(y), geneId)) / 2604) * 100))
+      message(msg_str)
+
       countsTSub <- t(y)
       countsTSub <- as.data.frame(countsTSub)
       countsTSub <- countsTSub[ , intersect(colnames(countsTSub), geneId), drop = FALSE]  # Keep existing columns in order
@@ -267,9 +277,11 @@ processCounts <- function(y,
       completeCounts <- t(countsTSub)
       
     } else if (identical(sort(rownames(y)), sort(geneId)) == TRUE) { # if all genes are present
-      
-      message(glue("{round((length(intersect(rownames(y), geneId)) / 2604) * 100)}% of the 2604 genes required for IdentifiHR are present."))
-      
+
+      msg_str <- glue("{pct}% of the 2604 genes required for IdentifiHR are present.",
+                      pct = round((length(intersect(rownames(y), geneId)) / 2604) * 100))
+      message(msg_str)
+
       completeCounts <- y[geneId, ] # order genes
       
     }
@@ -330,9 +342,11 @@ processCounts <- function(y,
     
     # If not all genes are present:
     if (identical(sort(rownames(y)), sort(geneId)) == FALSE) {
-      
-      message(glue("{round((length(intersect(rownames(y), geneId)) / 2604) * 100)}% of the 2604 genes required for IdentifiHR are present.")))
-      
+
+      msg_str <- glue("{pct}% of the 2604 genes required for IdentifiHR are present.",
+                      pct = round((length(intersect(rownames(y), geneId)) / 2604) * 100))
+      message(msg_str)
+
       # Report which genes are missing in warning message
       missingGenes <- setdiff(geneId, rownames(y))
       warning(paste0("The following genes are missing from the input: ", 
@@ -353,9 +367,11 @@ processCounts <- function(y,
       rownameGeneIdx <- rownames(completeCounts)
       
     } else if (identical(sort(rownames(y)), sort(geneId)) == TRUE) { # if all genes are present
-      
-      message(glue("{round((length(intersect(rownames(y), geneId)) / 2604) * 100)}% of the 2604 genes required for IdentifiHR are present."))
-      
+
+      msg_str <- glue("{pct}% of the 2604 genes required for IdentifiHR are present.",
+                      pct = round((length(intersect(rownames(y), geneId)) / 2604) * 100))
+      message(msg_str)
+
       completeCounts <- y[geneId, ] # order genes
       rownameGeneIdx <- rownames(completeCounts)
       
@@ -418,9 +434,11 @@ processCounts <- function(y,
     
     # If not all genes are present:
     if (identical(sort(rownames(y)), sort(geneId)) == FALSE) {
-      
-      message(glue("{round((length(intersect(rownames(y), geneId)) / 2604) * 100)}% of the 2604 genes required for IdentifiHR are present.")))
-      
+
+      msg_str <- glue("{pct}% of the 2604 genes required for IdentifiHR are present.",
+                      pct = round((length(intersect(rownames(y), geneId)) / 2604) * 100))
+      message(msg_str)
+
       countsTSub <- t(y)
       countsTSub <- as.data.frame(countsTSub)
       countsTSub <- countsTSub[ , intersect(colnames(countsTSub), geneId), drop = FALSE]  # Keep existing columns in order
@@ -446,9 +464,11 @@ processCounts <- function(y,
       completeCounts <- t(countsTSub)
       
     } else if (identical(sort(rownames(y)), sort(geneId)) == TRUE) { # if all genes are present
-      
-      message(glue("{round((length(intersect(rownames(y), geneId)) / 2604) * 100)}% of the 2604 genes required for IdentifiHR are present."))
-      
+
+      msg_str <- glue("{pct}% of the 2604 genes required for IdentifiHR are present.",
+                      pct = round((length(intersect(rownames(y), geneId)) / 2604) * 100))
+      message(msg_str)
+
       completeCounts <- y[geneId, ] # order genes
       
     }
@@ -509,9 +529,11 @@ processCounts <- function(y,
     
     # If not all genes are present:
     if (identical(sort(rownames(y)), sort(geneId)) == FALSE) {
-      
-      message(glue("{round((length(intersect(rownames(y), geneId)) / 2604) * 100)}% of the 2604 genes required for IdentifiHR are present.")))
-      
+
+      msg_str <- glue("{pct}% of the 2604 genes required for IdentifiHR are present.",
+                      pct = round((length(intersect(rownames(y), geneId)) / 2604) * 100))
+      message(msg_str)
+
       # Report which genes are missing in warning message
       missingGenes <- setdiff(geneId, rownames(y))
       warning(paste0("The following genes are missing from the input: ", 
@@ -532,9 +554,11 @@ processCounts <- function(y,
       rownameGeneIdx <- rownames(completeCounts)
       
     } else if (identical(sort(rownames(y)), sort(geneId)) == TRUE) { # if all genes are present
-      
-      message(glue("{round((length(intersect(rownames(y), geneId)) / 2604) * 100)}% of the 2604 genes required for IdentifiHR are present."))
-      
+
+      msg_str <- glue("{pct}% of the 2604 genes required for IdentifiHR are present.",
+                      pct = round((length(intersect(rownames(y), geneId)) / 2604) * 100))
+      message(msg_str)
+
       completeCounts <- y[geneId, ] # order genes
       rownameGeneIdx <- rownames(completeCounts)
       
