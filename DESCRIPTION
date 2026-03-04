@@ -2,8 +2,8 @@ Package: IdentifiHR
 Type: Package
 Title: IdentifiHR: predicting homologous recombination (HR) status for high-grade serous ovarian caricnoma (HGSC) using gene expression
 Version: 0.99.1
-Authors@R: 
-    c(person(given = "Ashley L", 
+Authors@R:
+    c(person(given = "Ashley L",
             family = "Weir",
             role = c("aut", "cre"),
             email = "weir.a@wehi.edu.au",
@@ -12,7 +12,9 @@ Description: IdentifiHR is a trained logistic regression model that can predict 
 Depends: R (>= 3.5.0)
 License: GPL-3
 Encoding: UTF-8
-LazyData: true
+LazyData: false
+URL: https://github.com/DavidsonGroup/IdentifiHR
+BugReports: https://github.com/DavidsonGroup/IdentifiHR/issues
 Imports:
     dplyr,
     tibble,
@@ -23,10 +25,10 @@ Imports:
     methods,
     SummarizedExperiment
 RoxygenNote: 7.3.2
-Suggests: 
+Suggests:
     knitr,
     rmarkdown,
     testthat (>= 3.0.0)
 VignetteBuilder: knitr
 Config/testthat/edition: 3
-biocViews: GeneExpression, RNASeq, Classification
+biocViews: GeneExpression, RNASeq, Classification, Sequencing, Regression
