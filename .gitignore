@@ -56,3 +56,6 @@ inst/doc
 # Renv files
 renv/
 renv.lock
+
+# BiocCheck files
+IdentifiHR.BiocCheck/
