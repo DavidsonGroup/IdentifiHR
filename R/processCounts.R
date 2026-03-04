@@ -70,7 +70,7 @@ processCounts <- function(y,
     # If not all genes are present:
     if (identical(sort(rownames(y)), sort(geneId)) == FALSE) {
       
-      message(suppressWarnings(cat(paste0(((length(intersect(rownames(y), geneId))/2604)[-2])*100, "%", sep = " ", "of the 2604 genes required for IdentifiHR are present."))))
+      message(glue("{round((length(intersect(rownames(y), geneId)) / 2604) * 100)}% of the 2604 genes required for IdentifiHR are present.")))
       
       countsTSub <- t(y)
       countsTSub <- as.data.frame(countsTSub)
@@ -98,7 +98,7 @@ processCounts <- function(y,
       
     } else if (identical(sort(rownames(y)), sort(geneId)) == TRUE) { # if all genes are present
       
-      message(cat(paste0(((length(intersect(rownames(y), geneId))/2604)[-2])*100, "%", sep = " ", "of the 2604 genes required for IdentifiHR are present.")))
+      message(glue("{round((length(intersect(rownames(y), geneId)) / 2604) * 100)}% of the 2604 genes required for IdentifiHR are present."))
       
       completeCounts <- y[geneId, ] # order genes
       
@@ -152,7 +152,7 @@ processCounts <- function(y,
     # If not all genes are present:
     if (identical(sort(rownames(y)), sort(geneId)) == FALSE) {
       
-      message(suppressWarnings(cat(paste0(((length(intersect(rownames(y), geneId))/2604)[-2])*100, "%", sep = " ", "of the 2604 genes required for IdentifiHR are present."))))
+      message(glue("{round((length(intersect(rownames(y), geneId)) / 2604) * 100)}% of the 2604 genes required for IdentifiHR are present.")))
       
       # Report which genes are missing in warning message
       missingGenes <- setdiff(geneId, rownames(y))
@@ -175,7 +175,7 @@ processCounts <- function(y,
       
     } else if (identical(sort(rownames(y)), sort(geneId)) == TRUE) { # if all genes are present
       
-      message(cat(paste0(((length(intersect(rownames(y), geneId))/2604)[-2])*100, "%", sep = " ", "of the 2604 genes required for IdentifiHR are present.")))
+      message(glue("{round((length(intersect(rownames(y), geneId)) / 2604) * 100)}% of the 2604 genes required for IdentifiHR are present."))
       
       completeCounts <- y[geneId, ] # order genes
       rownameGeneIdx <- rownames(completeCounts)
@@ -240,7 +240,7 @@ processCounts <- function(y,
     # If not all genes are present:
     if (identical(sort(rownames(y)), sort(geneId)) == FALSE) {
       
-      message(suppressWarnings(cat(paste0(((length(intersect(rownames(y), geneId))/2604)[-2])*100, "%", sep = " ", "of the 2604 genes required for IdentifiHR are present."))))
+      message(glue("{round((length(intersect(rownames(y), geneId)) / 2604) * 100)}% of the 2604 genes required for IdentifiHR are present.")))
       
       countsTSub <- t(y)
       countsTSub <- as.data.frame(countsTSub)
@@ -268,7 +268,7 @@ processCounts <- function(y,
       
     } else if (identical(sort(rownames(y)), sort(geneId)) == TRUE) { # if all genes are present
       
-      message(cat(paste0(((length(intersect(rownames(y), geneId))/2604)[-2])*100, "%", sep = " ", "of the 2604 genes required for IdentifiHR are present.")))
+      message(glue("{round((length(intersect(rownames(y), geneId)) / 2604) * 100)}% of the 2604 genes required for IdentifiHR are present."))
       
       completeCounts <- y[geneId, ] # order genes
       
@@ -331,7 +331,7 @@ processCounts <- function(y,
     # If not all genes are present:
     if (identical(sort(rownames(y)), sort(geneId)) == FALSE) {
       
-      message(suppressWarnings(cat(paste0(((length(intersect(rownames(y), geneId))/2604)[-2])*100, "%", sep = " ", "of the 2604 genes required for IdentifiHR are present."))))
+      message(glue("{round((length(intersect(rownames(y), geneId)) / 2604) * 100)}% of the 2604 genes required for IdentifiHR are present.")))
       
       # Report which genes are missing in warning message
       missingGenes <- setdiff(geneId, rownames(y))
@@ -354,7 +354,7 @@ processCounts <- function(y,
       
     } else if (identical(sort(rownames(y)), sort(geneId)) == TRUE) { # if all genes are present
       
-      message(cat(paste0(((length(intersect(rownames(y), geneId))/2604)[-2])*100, "%", sep = " ", "of the 2604 genes required for IdentifiHR are present.")))
+      message(glue("{round((length(intersect(rownames(y), geneId)) / 2604) * 100)}% of the 2604 genes required for IdentifiHR are present."))
       
       completeCounts <- y[geneId, ] # order genes
       rownameGeneIdx <- rownames(completeCounts)
@@ -419,7 +419,7 @@ processCounts <- function(y,
     # If not all genes are present:
     if (identical(sort(rownames(y)), sort(geneId)) == FALSE) {
       
-      message(suppressWarnings(cat(paste0(((length(intersect(rownames(y), geneId))/2604)[-2])*100, "%", sep = " ", "of the 2604 genes required for IdentifiHR are present."))))
+      message(glue("{round((length(intersect(rownames(y), geneId)) / 2604) * 100)}% of the 2604 genes required for IdentifiHR are present.")))
       
       countsTSub <- t(y)
       countsTSub <- as.data.frame(countsTSub)
@@ -447,7 +447,7 @@ processCounts <- function(y,
       
     } else if (identical(sort(rownames(y)), sort(geneId)) == TRUE) { # if all genes are present
       
-      message(cat(paste0(((length(intersect(rownames(y), geneId))/2604)[-2])*100, "%", sep = " ", "of the 2604 genes required for IdentifiHR are present.")))
+      message(glue("{round((length(intersect(rownames(y), geneId)) / 2604) * 100)}% of the 2604 genes required for IdentifiHR are present."))
       
       completeCounts <- y[geneId, ] # order genes
       
@@ -510,7 +510,7 @@ processCounts <- function(y,
     # If not all genes are present:
     if (identical(sort(rownames(y)), sort(geneId)) == FALSE) {
       
-      message(suppressWarnings(cat(paste0(((length(intersect(rownames(y), geneId))/2604)[-2])*100, "%", sep = " ", "of the 2604 genes required for IdentifiHR are present."))))
+      message(glue("{round((length(intersect(rownames(y), geneId)) / 2604) * 100)}% of the 2604 genes required for IdentifiHR are present.")))
       
       # Report which genes are missing in warning message
       missingGenes <- setdiff(geneId, rownames(y))
@@ -533,7 +533,7 @@ processCounts <- function(y,
       
     } else if (identical(sort(rownames(y)), sort(geneId)) == TRUE) { # if all genes are present
       
-      message(cat(paste0(((length(intersect(rownames(y), geneId))/2604)[-2])*100, "%", sep = " ", "of the 2604 genes required for IdentifiHR are present.")))
+      message(glue("{round((length(intersect(rownames(y), geneId)) / 2604) * 100)}% of the 2604 genes required for IdentifiHR are present."))
       
       completeCounts <- y[geneId, ] # order genes
       rownameGeneIdx <- rownames(completeCounts)

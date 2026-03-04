@@ -16,6 +16,7 @@ LazyData: false
 URL: https://github.com/DavidsonGroup/IdentifiHR
 BugReports: https://github.com/DavidsonGroup/IdentifiHR/issues
 Imports:
+    glue,
     dplyr,
     tibble,
     edgeR,
