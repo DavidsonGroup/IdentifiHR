@@ -3,10 +3,8 @@
 
 rawCountsSummarisedExperiment <- function(rawCounts) {
   
-  library(SummarizedExperiment)
-  
   # convert rawCounts data frame to a SummarisedExperiment object
-  rawCountsSe <- SummarizedExperiment(assays = list(counts = rawCounts))
+  rawCountsSe <- SummarizedExperiment::SummarizedExperiment(assays = list(counts = rawCounts))
   
   # return rawCounts as a SummarisedExperiment object
   return(rawCountsSe)

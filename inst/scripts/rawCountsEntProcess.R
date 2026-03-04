@@ -3,14 +3,11 @@
 
 rawCountsEntProcess <- function(rawCounts, modelGeneId) {
   
-  # load dplyr as required
-  library(dplyr)
-  
   # add ensembl_id column to rawCounts for left_join
   rawCounts$ensembl_id <- rownames(rawCounts)
   
   # left_join with modelGeneId on ensembl_id
-  rawCountsEnt <- left_join(rawCounts, modelGeneId, by = "ensembl_id")
+  rawCountsEnt <- dplyr::left_join(rawCounts, modelGeneId, by = "ensembl_id")
   
   # remove rows where entrezgene_id is NA
   rawCountsEnt <- rawCountsEnt |>
