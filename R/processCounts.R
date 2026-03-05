@@ -80,9 +80,14 @@ processCounts <- function(y,
       
       # Report which genes are missing in warning message
       missingGenes <- setdiff(geneId, colnames(countsTSub))
-      warning(paste0("The following genes are missing from the input: ", 
-                     paste0(missingGenes, collapse = ", "),
-                     ". Missing genes will have their counts set to zero and predictions will be made, though the model's accuracy will be reduced; we recommend also running the interrogateMissingness() function."))
+      msg_str <- glue(
+          "The following genes are missing from the input: {missing_genes_str}. ",
+          "Missing genes will have their counts set to zero and predictions will be made, ",
+          "though the model's accuracy will be reduced; ",
+          "we recommend also running the interrogateMissingness() function.",
+          missing_genes_str = paste(missingGenes, collapse = ", ")
+      )
+      warning(msg_str)
       
       # Fill missing gene columns with zero values
       
@@ -162,9 +167,14 @@ processCounts <- function(y,
 
       # Report which genes are missing in warning message
       missingGenes <- setdiff(geneId, rownames(y))
-      warning(paste0("The following genes are missing from the input: ", 
-                     paste0(missingGenes, collapse = ", "),
-                     ". Missing genes will have their counts set to zero and predictions will be made, though the model's accuracy will be reduced; we recommend also running the interrogateMissingness() function."))
+      msg_str <- glue(
+          "The following genes are missing from the input: {missing_genes_str}. ",
+          "Missing genes will have their counts set to zero and predictions will be made, ",
+          "though the model's accuracy will be reduced; ",
+          "we recommend also running the interrogateMissingness() function.",
+          missing_genes_str = paste(missingGenes, collapse = ", ")
+      )
+      warning(msg_str)
       
       if (length(missingGenes) > 0) {
         # Create a data frame with missing rows filled with zeros
@@ -258,9 +268,14 @@ processCounts <- function(y,
       
       # Report which genes are missing in warning message
       missingGenes <- setdiff(geneId, colnames(countsTSub))
-      warning(paste0("The following genes are missing from the input: ", 
-                     paste0(missingGenes, collapse = ", "),
-                     ". Missing genes will have their counts set to zero and predictions will be made, though the model's accuracy will be reduced; we recommend also running the interrogateMissingness() function."))
+      msg_str <- glue(
+          "The following genes are missing from the input: {missing_genes_str}. ",
+          "Missing genes will have their counts set to zero and predictions will be made, ",
+          "though the model's accuracy will be reduced; ",
+          "we recommend also running the interrogateMissingness() function.",
+          missing_genes_str = paste(missingGenes, collapse = ", ")
+      )
+      warning(msg_str)
       
       # Fill missing gene columns with zero values
       
@@ -349,9 +364,14 @@ processCounts <- function(y,
 
       # Report which genes are missing in warning message
       missingGenes <- setdiff(geneId, rownames(y))
-      warning(paste0("The following genes are missing from the input: ", 
-                     paste0(missingGenes, collapse = ", "),
-                     ". Missing genes will have their counts set to zero and predictions will be made, though the model's accuracy will be reduced; we recommend also running the interrogateMissingness() function."))
+      msg_str <- glue(
+          "The following genes are missing from the input: {missing_genes_str}. ",
+          "Missing genes will have their counts set to zero and predictions will be made, ",
+          "though the model's accuracy will be reduced; ",
+          "we recommend also running the interrogateMissingness() function.",
+          missing_genes_str = paste(missingGenes, collapse = ", ")
+      )
+      warning(msg_str)
       
       if (length(missingGenes) > 0) {
         # Create a data frame with missing rows filled with zeros
@@ -445,9 +465,14 @@ processCounts <- function(y,
       
       # Report which genes are missing in warning message
       missingGenes <- setdiff(geneId, colnames(countsTSub))
-      warning(paste0("The following genes are missing from the input: ", 
-                     paste0(missingGenes, collapse = ", "),
-                     ". Missing genes will have their counts set to zero and predictions will be made, though the model's accuracy will be reduced; we recommend also running the interrogateMissingness() function."))
+      msg_str <- glue(
+          "The following genes are missing from the input: {missing_genes_str}. ",
+          "Missing genes will have their counts set to zero and predictions will be made, ",
+          "though the model's accuracy will be reduced; ",
+          "we recommend also running the interrogateMissingness() function.",
+          missing_genes_str = paste(missingGenes, collapse = ", ")
+      )
+      warning(msg_str)
       
       # Fill missing gene columns with zero values
       
@@ -536,9 +561,14 @@ processCounts <- function(y,
 
       # Report which genes are missing in warning message
       missingGenes <- setdiff(geneId, rownames(y))
-      warning(paste0("The following genes are missing from the input: ", 
-                     paste0(missingGenes, collapse = ", "),
-                     ". Missing genes will have their counts set to zero and predictions will be made, though the model's accuracy will be reduced; we recommend also running the interrogateMissingness() function."))
+      msg_str <- glue(
+          "The following genes are missing from the input: {missing_genes_str}. ",
+          "Missing genes will have their counts set to zero and predictions will be made, ",
+          "though the model's accuracy will be reduced; ",
+          "we recommend also running the interrogateMissingness() function.",
+          missing_genes_str = paste(missingGenes, collapse = ", ")
+      )
+      warning(msg_str)
       
       if (length(missingGenes) > 0) {
         # Create a data frame with missing rows filled with zeros
