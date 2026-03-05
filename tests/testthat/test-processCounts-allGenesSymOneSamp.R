@@ -8,8 +8,8 @@ testthat::test_that("processed counts contain all required genes, with hgnc symb
   rawCountsSingSamp <- rawCountsSingSampProcess(rawCounts)
   source(system.file("scripts", "rawCountsSymProcess.R", package = "IdentifiHR"))
   rawCountsSym <- rawCountsSymProcess(rawCountsSingSamp, modelGeneId)
-  processedCounts <- processCounts(y = rawCountsSym, geneIds = "HGNC")
   
+  expect_warning(processedCounts <- processCounts(y = rawCountsSym, geneIds = "HGNC"))
   expect_identical(rownames(processedCounts), rownames(modelMeanGenesIdentifiHR))
   expect_identical(rownames(processedCounts), rownames(modelSDGenesIdentifiHR))
   expect_identical(rownames(processedCounts), modelGeneId$ensembl_id)
