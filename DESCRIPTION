@@ -12,7 +12,7 @@ Description: IdentifiHR is a trained logistic regression model that can predict 
 Depends: R (>= 3.5.0)
 License: GPL-3
 Encoding: UTF-8
-LazyData: false
+LazyData: true
 URL: https://github.com/DavidsonGroup/IdentifiHR
 BugReports: https://github.com/DavidsonGroup/IdentifiHR/issues
 Imports:
