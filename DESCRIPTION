@@ -1,6 +1,6 @@
 Package: IdentifiHR
 Type: Package
-Title: IdentifiHR: predicting homologous recombination (HR) status for high-grade serous ovarian caricnoma (HGSC) using gene expression
+Title: IdentifiHR: predicting homologous recombination (HR) status for high-grade serous ovarian carcinoma (HGSC) using gene expression
 Version: 0.99.1
 Authors@R: 
     c(person(given = "Ashley L", 
