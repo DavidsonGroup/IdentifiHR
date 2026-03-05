@@ -1,4 +1,4 @@
-test_that("predictHR gives thge correct prediciton labels and outputs a probability within the correct range", {
+test_that("predictHR gives the correct prediction labels and outputs a probability within the correct range", {
  
   data("rawCounts")
   hrLevels <- c("HRD", "HRP")
