@@ -1,7 +1,9 @@
 testthat::test_that("processed counts contain all required genes, with entrez identifiers as input", {
-  
+
   data("rawCounts")
-  data("modelGeneId")
+  modelGeneId <- IdentifiHR:::modelGeneId
+  modelMeanGenesIdentifiHR <- IdentifiHR:::modelMeanGenesIdentifiHR
+  modelSDGenesIdentifiHR <- IdentifiHR:::modelSDGenesIdentifiHR
   source(system.file("scripts", "rawCountsEntProcess.R", package = "IdentifiHR"))
   rawCountsEnt <- rawCountsEntProcess(rawCounts, modelGeneId)
   processedCounts <- processCounts(y = rawCountsEnt, geneIds = "ENTREZ")

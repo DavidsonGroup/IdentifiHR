@@ -1,7 +1,9 @@
 testthat::test_that("processed counts contain all required genes, with hgnc symbols as input, for only a single sample", {
   
   data("rawCounts")
-  data("modelGeneId")
+  modelGeneId <- IdentifiHR:::modelGeneId
+  modelMeanGenesIdentifiHR <- IdentifiHR:::modelMeanGenesIdentifiHR
+  modelSDGenesIdentifiHR <- IdentifiHR:::modelSDGenesIdentifiHR
   source(system.file("scripts", "rawCountsSingSampProcess.R", package = "IdentifiHR"))
   rawCountsSingSamp <- rawCountsSingSampProcess(rawCounts)
   source(system.file("scripts", "rawCountsSymProcess.R", package = "IdentifiHR"))

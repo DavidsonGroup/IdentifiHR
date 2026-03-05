@@ -1,7 +1,7 @@
 test_that("for a single sample represented by entrez ids, missing genes are identified and reported", {
   
   data("rawCounts")
-  data("modelGeneId")
+  modelGeneId <- IdentifiHR:::modelGeneId
   source(system.file("scripts", "rawCountsSingSampProcess.R", package = "IdentifiHR"))
   rawCountsSingSamp <- rawCountsSingSampProcess(rawCounts)
   source(system.file("scripts", "rawCountsEntProcess.R", package = "IdentifiHR"))

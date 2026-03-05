@@ -1,7 +1,7 @@
 testthat::test_that("processed counts are numeric and not NA, with entrez identifiers as input", {
   
   data("rawCounts")
-  data("modelGeneId")
+  modelGeneId <- IdentifiHR:::modelGeneId
   source(system.file("scripts", "rawCountsEntProcess.R", package = "IdentifiHR"))
   rawCountsEnt <- rawCountsEntProcess(rawCounts, modelGeneId)
   processedCounts <- processCounts(y = rawCountsEnt, geneIds = "ENTREZ")
