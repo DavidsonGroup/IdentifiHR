@@ -2,31 +2,33 @@ Package: IdentifiHR
 Type: Package
 Title: IdentifiHR: predicting homologous recombination (HR) status for high-grade serous ovarian carcinoma (HGSC) using gene expression
 Version: 0.99.1
-Authors@R: 
-    c(person(given = "Ashley L", 
+Authors@R:
+    c(person(given = "Ashley L",
             family = "Weir",
             role = c("aut", "cre"),
             email = "weir.a@wehi.edu.au",
             comment = c(ORCID = "0000-0002-3072-2616")))
 Description: IdentifiHR is a trained logistic regression model that can predict HR status, being HR deficient (HRD) or HR proficient (HRP), in addition to the probability of a sample being HRD, using only gene expression. IdentifiHR first subsets raw gene expression counts collected from RNA sequencing to only those required for count transcormation and scaling (n = 2604 genes), and then uses the weighted abundances of 209 of these genes to predict HR status in HGSC.
-Depends: R (>= 3.5.0)
+Depends: R (>= 4.1.0)
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
+URL: https://github.com/DavidsonGroup/IdentifiHR
+BugReports: https://github.com/DavidsonGroup/IdentifiHR/issues
 Imports:
+    glue,
     dplyr,
     tibble,
     edgeR,
     glmnet,
     stats,
-    rlang,
     methods,
     SummarizedExperiment
-RoxygenNote: 7.3.2
-Suggests: 
+RoxygenNote: 7.3.3
+Suggests:
     knitr,
     rmarkdown,
     testthat (>= 3.0.0)
 VignetteBuilder: knitr
 Config/testthat/edition: 3
-biocViews: GeneExpression, RNASeq, Classification
+biocViews: GeneExpression, RNASeq, Classification, Sequencing, Regression
