@@ -3,7 +3,7 @@ test_that("when all required genes are present in input, they match the model ge
   data("rawCounts")
   y <- rawCounts
   # Removing a model gene gene to give a warning message.
-  data("modelGeneId")
+  modelGeneId <- IdentifiHR:::modelGeneId
   geneId <- modelGeneId$ensembl_id
   # Strip any potential ensembl version numbers
   rownames(y) <- gsub("\\..*","", rownames(y))

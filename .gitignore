@@ -9,6 +9,7 @@
 
 # User-specific files
 .Ruserdata
+.Rprofile
 
 # Example code in package build process
 *-Ex.R
@@ -51,3 +52,13 @@ rsconnect/
 inst/doc
 /doc/
 /Meta/
+
+# Renv files
+renv/
+renv.lock
+
+# BiocCheck files
+IdentifiHR.BiocCheck/
+
+# VS Code files
+.vscode

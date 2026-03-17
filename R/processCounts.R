@@ -69,18 +69,25 @@ processCounts <- function(y,
     
     # If not all genes are present:
     if (identical(sort(rownames(y)), sort(geneId)) == FALSE) {
-      
-      message(suppressWarnings(cat(paste0(((length(intersect(rownames(y), geneId))/2604)[-2])*100, "%", sep = " ", "of the 2604 genes required for IdentifiHR are present."))))
-      
+
+      msg_str <- glue("{pct}% of the 2604 genes required for IdentifiHR are present.",
+                      pct = round((length(intersect(rownames(y), geneId)) / 2604)[-2] * 100))
+      message(msg_str)
+
       countsTSub <- t(y)
       countsTSub <- as.data.frame(countsTSub)
       countsTSub <- countsTSub[ , intersect(colnames(countsTSub), geneId), drop = FALSE]  # Keep existing columns in order
       
       # Report which genes are missing in warning message
       missingGenes <- setdiff(geneId, colnames(countsTSub))
-      warning(paste0("The following genes are missing from the input: ", 
-                     paste0(missingGenes, collapse = ", "),
-                     ". Missing genes will have their counts set to zero and predictions will be made, though the model's accuracy will be reduced; we recommend also running the interrogateMissingness() function."))
+      msg_str <- glue(
+          "The following genes are missing from the input: {missing_genes_str}. ",
+          "Missing genes will have their counts set to zero and predictions will be made, ",
+          "though the model's accuracy will be reduced; ",
+          "we recommend also running the interrogateMissingness() function.",
+          missing_genes_str = paste(missingGenes, collapse = ", ")
+      )
+      warning(msg_str)
       
       # Fill missing gene columns with zero values
       
@@ -97,9 +104,11 @@ processCounts <- function(y,
       completeCounts <- t(countsTSub)
       
     } else if (identical(sort(rownames(y)), sort(geneId)) == TRUE) { # if all genes are present
-      
-      message(cat(paste0(((length(intersect(rownames(y), geneId))/2604)[-2])*100, "%", sep = " ", "of the 2604 genes required for IdentifiHR are present.")))
-      
+
+      msg_str <- glue("{pct}% of the 2604 genes required for IdentifiHR are present.",
+                      pct = round((length(intersect(rownames(y), geneId)) / 2604)[-2] * 100))
+      message(msg_str)
+
       completeCounts <- y[geneId, ] # order genes
       
     }
@@ -151,14 +160,21 @@ processCounts <- function(y,
     
     # If not all genes are present:
     if (identical(sort(rownames(y)), sort(geneId)) == FALSE) {
-      
-      message(suppressWarnings(cat(paste0(((length(intersect(rownames(y), geneId))/2604)[-2])*100, "%", sep = " ", "of the 2604 genes required for IdentifiHR are present."))))
-      
+
+      msg_str <- glue("{pct}% of the 2604 genes required for IdentifiHR are present.",
+                      pct = round((length(intersect(rownames(y), geneId)) / 2604)[-2] * 100))
+      message(msg_str)
+
       # Report which genes are missing in warning message
       missingGenes <- setdiff(geneId, rownames(y))
-      warning(paste0("The following genes are missing from the input: ", 
-                     paste0(missingGenes, collapse = ", "),
-                     ". Missing genes will have their counts set to zero and predictions will be made, though the model's accuracy will be reduced; we recommend also running the interrogateMissingness() function."))
+      msg_str <- glue(
+          "The following genes are missing from the input: {missing_genes_str}. ",
+          "Missing genes will have their counts set to zero and predictions will be made, ",
+          "though the model's accuracy will be reduced; ",
+          "we recommend also running the interrogateMissingness() function.",
+          missing_genes_str = paste(missingGenes, collapse = ", ")
+      )
+      warning(msg_str)
       
       if (length(missingGenes) > 0) {
         # Create a data frame with missing rows filled with zeros
@@ -174,9 +190,11 @@ processCounts <- function(y,
       rownameGeneIdx <- rownames(completeCounts)
       
     } else if (identical(sort(rownames(y)), sort(geneId)) == TRUE) { # if all genes are present
-      
-      message(cat(paste0(((length(intersect(rownames(y), geneId))/2604)[-2])*100, "%", sep = " ", "of the 2604 genes required for IdentifiHR are present.")))
-      
+
+      msg_str <- glue("{pct}% of the 2604 genes required for IdentifiHR are present.",
+                      pct = round((length(intersect(rownames(y), geneId)) / 2604)[-2] * 100))
+      message(msg_str)
+
       completeCounts <- y[geneId, ] # order genes
       rownameGeneIdx <- rownames(completeCounts)
       
@@ -239,18 +257,25 @@ processCounts <- function(y,
     
     # If not all genes are present:
     if (identical(sort(rownames(y)), sort(geneId)) == FALSE) {
-      
-      message(suppressWarnings(cat(paste0(((length(intersect(rownames(y), geneId))/2604)[-2])*100, "%", sep = " ", "of the 2604 genes required for IdentifiHR are present."))))
-      
+
+      msg_str <- glue("{pct}% of the 2604 genes required for IdentifiHR are present.",
+                      pct = round((length(intersect(rownames(y), geneId)) / 2604)[-2] * 100))
+      message(msg_str)
+
       countsTSub <- t(y)
       countsTSub <- as.data.frame(countsTSub)
       countsTSub <- countsTSub[ , intersect(colnames(countsTSub), geneId), drop = FALSE]  # Keep existing columns in order
       
       # Report which genes are missing in warning message
       missingGenes <- setdiff(geneId, colnames(countsTSub))
-      warning(paste0("The following genes are missing from the input: ", 
-                     paste0(missingGenes, collapse = ", "),
-                     ". Missing genes will have their counts set to zero and predictions will be made, though the model's accuracy will be reduced; we recommend also running the interrogateMissingness() function."))
+      msg_str <- glue(
+          "The following genes are missing from the input: {missing_genes_str}. ",
+          "Missing genes will have their counts set to zero and predictions will be made, ",
+          "though the model's accuracy will be reduced; ",
+          "we recommend also running the interrogateMissingness() function.",
+          missing_genes_str = paste(missingGenes, collapse = ", ")
+      )
+      warning(msg_str)
       
       # Fill missing gene columns with zero values
       
@@ -267,9 +292,11 @@ processCounts <- function(y,
       completeCounts <- t(countsTSub)
       
     } else if (identical(sort(rownames(y)), sort(geneId)) == TRUE) { # if all genes are present
-      
-      message(cat(paste0(((length(intersect(rownames(y), geneId))/2604)[-2])*100, "%", sep = " ", "of the 2604 genes required for IdentifiHR are present.")))
-      
+
+      msg_str <- glue("{pct}% of the 2604 genes required for IdentifiHR are present.",
+                      pct = round((length(intersect(rownames(y), geneId)) / 2604)[-2] * 100))
+      message(msg_str)
+
       completeCounts <- y[geneId, ] # order genes
       
     }
@@ -330,14 +357,21 @@ processCounts <- function(y,
     
     # If not all genes are present:
     if (identical(sort(rownames(y)), sort(geneId)) == FALSE) {
-      
-      message(suppressWarnings(cat(paste0(((length(intersect(rownames(y), geneId))/2604)[-2])*100, "%", sep = " ", "of the 2604 genes required for IdentifiHR are present."))))
-      
+
+      msg_str <- glue("{pct}% of the 2604 genes required for IdentifiHR are present.",
+                      pct = round((length(intersect(rownames(y), geneId)) / 2604)[-2] * 100))
+      message(msg_str)
+
       # Report which genes are missing in warning message
       missingGenes <- setdiff(geneId, rownames(y))
-      warning(paste0("The following genes are missing from the input: ", 
-                     paste0(missingGenes, collapse = ", "),
-                     ". Missing genes will have their counts set to zero and predictions will be made, though the model's accuracy will be reduced; we recommend also running the interrogateMissingness() function."))
+      msg_str <- glue(
+          "The following genes are missing from the input: {missing_genes_str}. ",
+          "Missing genes will have their counts set to zero and predictions will be made, ",
+          "though the model's accuracy will be reduced; ",
+          "we recommend also running the interrogateMissingness() function.",
+          missing_genes_str = paste(missingGenes, collapse = ", ")
+      )
+      warning(msg_str)
       
       if (length(missingGenes) > 0) {
         # Create a data frame with missing rows filled with zeros
@@ -353,9 +387,11 @@ processCounts <- function(y,
       rownameGeneIdx <- rownames(completeCounts)
       
     } else if (identical(sort(rownames(y)), sort(geneId)) == TRUE) { # if all genes are present
-      
-      message(cat(paste0(((length(intersect(rownames(y), geneId))/2604)[-2])*100, "%", sep = " ", "of the 2604 genes required for IdentifiHR are present.")))
-      
+
+      msg_str <- glue("{pct}% of the 2604 genes required for IdentifiHR are present.",
+                      pct = round((length(intersect(rownames(y), geneId)) / 2604)[-2] * 100))
+      message(msg_str)
+
       completeCounts <- y[geneId, ] # order genes
       rownameGeneIdx <- rownames(completeCounts)
       
@@ -418,18 +454,25 @@ processCounts <- function(y,
     
     # If not all genes are present:
     if (identical(sort(rownames(y)), sort(geneId)) == FALSE) {
-      
-      message(suppressWarnings(cat(paste0(((length(intersect(rownames(y), geneId))/2604)[-2])*100, "%", sep = " ", "of the 2604 genes required for IdentifiHR are present."))))
-      
+
+      msg_str <- glue("{pct}% of the 2604 genes required for IdentifiHR are present.",
+                      pct = round((length(intersect(rownames(y), geneId)) / 2604)[-2] * 100))
+      message(msg_str)
+
       countsTSub <- t(y)
       countsTSub <- as.data.frame(countsTSub)
       countsTSub <- countsTSub[ , intersect(colnames(countsTSub), geneId), drop = FALSE]  # Keep existing columns in order
       
       # Report which genes are missing in warning message
       missingGenes <- setdiff(geneId, colnames(countsTSub))
-      warning(paste0("The following genes are missing from the input: ", 
-                     paste0(missingGenes, collapse = ", "),
-                     ". Missing genes will have their counts set to zero and predictions will be made, though the model's accuracy will be reduced; we recommend also running the interrogateMissingness() function."))
+      msg_str <- glue(
+          "The following genes are missing from the input: {missing_genes_str}. ",
+          "Missing genes will have their counts set to zero and predictions will be made, ",
+          "though the model's accuracy will be reduced; ",
+          "we recommend also running the interrogateMissingness() function.",
+          missing_genes_str = paste(missingGenes, collapse = ", ")
+      )
+      warning(msg_str)
       
       # Fill missing gene columns with zero values
       
@@ -446,9 +489,11 @@ processCounts <- function(y,
       completeCounts <- t(countsTSub)
       
     } else if (identical(sort(rownames(y)), sort(geneId)) == TRUE) { # if all genes are present
-      
-      message(cat(paste0(((length(intersect(rownames(y), geneId))/2604)[-2])*100, "%", sep = " ", "of the 2604 genes required for IdentifiHR are present.")))
-      
+
+      msg_str <- glue("{pct}% of the 2604 genes required for IdentifiHR are present.",
+                      pct = round((length(intersect(rownames(y), geneId)) / 2604)[-2] * 100))
+      message(msg_str)
+
       completeCounts <- y[geneId, ] # order genes
       
     }
@@ -509,14 +554,21 @@ processCounts <- function(y,
     
     # If not all genes are present:
     if (identical(sort(rownames(y)), sort(geneId)) == FALSE) {
-      
-      message(suppressWarnings(cat(paste0(((length(intersect(rownames(y), geneId))/2604)[-2])*100, "%", sep = " ", "of the 2604 genes required for IdentifiHR are present."))))
-      
+
+      msg_str <- glue("{pct}% of the 2604 genes required for IdentifiHR are present.",
+                      pct = round((length(intersect(rownames(y), geneId)) / 2604)[-2] * 100))
+      message(msg_str)
+
       # Report which genes are missing in warning message
       missingGenes <- setdiff(geneId, rownames(y))
-      warning(paste0("The following genes are missing from the input: ", 
-                     paste0(missingGenes, collapse = ", "),
-                     ". Missing genes will have their counts set to zero and predictions will be made, though the model's accuracy will be reduced; we recommend also running the interrogateMissingness() function."))
+      msg_str <- glue(
+          "The following genes are missing from the input: {missing_genes_str}. ",
+          "Missing genes will have their counts set to zero and predictions will be made, ",
+          "though the model's accuracy will be reduced; ",
+          "we recommend also running the interrogateMissingness() function.",
+          missing_genes_str = paste(missingGenes, collapse = ", ")
+      )
+      warning(msg_str)
       
       if (length(missingGenes) > 0) {
         # Create a data frame with missing rows filled with zeros
@@ -532,9 +584,11 @@ processCounts <- function(y,
       rownameGeneIdx <- rownames(completeCounts)
       
     } else if (identical(sort(rownames(y)), sort(geneId)) == TRUE) { # if all genes are present
-      
-      message(cat(paste0(((length(intersect(rownames(y), geneId))/2604)[-2])*100, "%", sep = " ", "of the 2604 genes required for IdentifiHR are present.")))
-      
+
+      msg_str <- glue("{pct}% of the 2604 genes required for IdentifiHR are present.",
+                      pct = round((length(intersect(rownames(y), geneId)) / 2604)[-2] * 100))
+      message(msg_str)
+
       completeCounts <- y[geneId, ] # order genes
       rownameGeneIdx <- rownames(completeCounts)
       

@@ -1,8 +1,8 @@
 test_that("error is called if models genes do not match input after indexing", {
   
   data("rawCounts")
-  data("modelGeneId")
-  data("modelMeanGenesIdentifiHR")
+  modelGeneId <- IdentifiHR:::modelGeneId
+  modelMeanGenesIdentifiHR <- IdentifiHR:::modelMeanGenesIdentifiHR
   geneId <- modelGeneId$ensembl_id
   rownames(rawCounts) <- gsub("\\..*","", rownames(rawCounts))
   rawCounts <- rawCounts[rownames(rawCounts) %in% geneId, ]

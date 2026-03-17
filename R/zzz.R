@@ -2,6 +2,7 @@
 
 # Import 'is' function from methods
 #' @importFrom methods is
+#' @importFrom glue glue
 NULL
 
 # Declare global variables for NSE

@@ -5,7 +5,7 @@ test_that("when all required genes are present in input, they do not match the m
   rawCountsMissing <- rawCounts[rownames(rawCounts) != "ENSG00000160959", ]
   y <- rawCountsMissing
   # Removing a model gene gene to give a warning message.
-  data("modelGeneId")
+  modelGeneId <- IdentifiHR:::modelGeneId
   geneId <- modelGeneId$ensembl_id
   # Strip any potential ensembl version numbers
   rownames(y) <- gsub("\\..*","", rownames(y))
